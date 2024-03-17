@@ -1,5 +1,6 @@
-import { actionMouseDown, actionMouseUp } from "./utils/moveDesktopItems";
+import { actionMouseDown, actionMouseUp } from "./moveDesktopItems";
 
+const desktopContent = document.querySelector(".desktop-content");
 export function createDesktopLabels(labels) {
   let positionY = 20;
 
@@ -9,6 +10,7 @@ export function createDesktopLabels(labels) {
     const desktopLabel = document.createElement("div");
     desktopLabel.className = "desktop-label";
     desktopLabel.id = label.name;
+
     desktopLabel.style.top = `${positionY}px`;
     positionY += 100;
 
