@@ -15,7 +15,7 @@ const desktopLabels = [
   },
   {
     name: "disc",
-    title: "disc",
+    title: "Disc",
   },
 ];
 

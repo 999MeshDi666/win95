@@ -1,4 +1,4 @@
-import { actionMouseDown, actionMouseUp } from "./moveDesktopItems";
+import { onMouseDown, onMouseUp, onTouchStart, onTouchEnd } from "./moveItems";
 
 const desktopContent = document.querySelector(".desktop-content");
 export function createDesktopLabels(labels) {
@@ -26,8 +26,10 @@ export function createDesktopLabels(labels) {
 
     desktopLabel.appendChild(desktopLabelIcon);
     desktopLabel.appendChild(desktopLabelTitle);
-    desktopLabel.addEventListener("mousedown", actionMouseDown);
-    desktopLabel.addEventListener("mouseup", actionMouseUp);
+    desktopLabel.addEventListener("mousedown", onMouseDown);
+    desktopLabel.addEventListener("mouseup", onMouseUp);
+    desktopLabel.addEventListener("touchstart", onTouchStart);
+    desktopLabel.addEventListener("touchend", onTouchEnd);
     desktopContent.appendChild(desktopLabel);
   });
 }
