@@ -38,14 +38,13 @@ function moveMobileItems(event) {
   const outOfScreenX =
     event.touches[0]?.clientX > window.innerWidth ||
     event.touches[0]?.clientX < 0;
-  console.log(event.touches[0]?.clientX, outOfScreenX);
+
   if (outOfScreenY || outOfScreenX) {
     document.removeEventListener("touchmove", moveMobileItems);
   }
   icon.style.top = `${event.touches[0]?.clientY - 25}px`;
   icon.style.left = `${event.touches[0]?.clientX - 45}px`;
 }
-console.log(window.innerWidth, window.innerHeight);
 export function onTouchStart(event) {
   const icon = event.target.closest("div");
   icon.style.top = `${event.touches[0]?.clientY - 25}px`;
