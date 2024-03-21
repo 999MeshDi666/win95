@@ -1,6 +1,7 @@
 import { onMouseDown, onMouseUp, onTouchStart, onTouchEnd } from "./moveItems";
 
 const desktopContent = document.querySelector(".desktop-content");
+
 export function createDesktopLabels(labels) {
   let positionY = 20;
 
@@ -31,5 +32,20 @@ export function createDesktopLabels(labels) {
     desktopLabel.addEventListener("touchstart", onTouchStart);
     desktopLabel.addEventListener("touchend", onTouchEnd);
     desktopContent.appendChild(desktopLabel);
+  });
+}
+
+export function createDesktopWindows(labels) {
+  labels.forEach((label) => {
+    const desktopWindow = document.createElement("div");
+    const desktopWindowHeader = document.createElement("div");
+    const desktopWindowHeaderPath = document.createElement("div");
+    const desktopWindowHeaderIcon = document.createElement("img");
+    const desktopWindowHeaderTitle = document.createElement("p");
+    const desktopWindowHeaderBtns = document.createElement("div");
+    const desktopWindowHeaderBtn = document.createElement("button");
+    const desktopWindowBody = document.createElement("div");
+    desktopWindow.appendChild(desktopWindowHeader);
+    desktopWindow.appendChild(desktopWindowBody);
   });
 }

@@ -1,6 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&family=Press+Start+2P&display=swap");
-@import url(https://db.onlinewebfonts.com/c/d27ac18244f6b2c66066bd925f1b7c45?family=Glasstown+NBP+Regular);
-@import url(https://db.onlinewebfonts.com/c/2f85ab49906a8a19a5a121f032e3a7e4?family=Opirus+OPIK+Regular);
+@import url("https://fonts.googleapis.com/css2?family=DotGothic16&display=swap");
 @font-face {
   font-family: "MS-Sans-Serif";
   src: url("../assets/fonts/MSSansSerif.ttf") format("ttf");
@@ -29,9 +27,9 @@ button {
 body {
   background-color: #008081;
   color: #fff;
-  font-family: "Glasstown NBP Regular";
+  font-family: "DotGothic16", sans-serif;
   letter-spacing: 1.5px;
-  font-size: 1.2rem;
+  font-size: 0.875rem;
   overflow: hidden;
 }
 .container {
@@ -42,10 +40,10 @@ body {
 }
 .desktop-border {
   border-style: outset;
-  border-left-color: #ffffff;
-  border-top-color: #ffffff;
-  border-bottom-color: #000;
+  border-top-color: #fff;
+  border-left-color: #fff;
   border-right-color: #000;
+  border-bottom-color: #000;
 }
 .desktop-content {
   width: 100%;
@@ -60,20 +58,59 @@ body {
   width: 700px;
   height: 400px;
   margin: 0 auto;
-  padding: 4px;
-  border-width: 2px;
+  padding: 2px;
+  border-width: 3px;
 }
 .desktop-window-header {
   display: flex;
-  background-color: #000080;
   justify-content: space-between;
+  background-color: #000080;
   padding: 4px;
 }
-.desktop-window-close-btn {
+.desktop-window-header-wrapper {
+  display: flex;
+  align-items: center;
+}
+.desktop-window-header-icon {
+  width: 18px;
+  margin-right: 5px;
+}
+
+.desktop-window-header-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 14px;
+  width: 16px;
   background-color: #c0c0c0;
-  border-width: 1px;
-  padding: 0 3px;
+  border-width: 2px;
   cursor: pointer;
+  box-sizing: content-box;
+}
+.desktop-window-header-btn:active {
+  border-style: solid;
+  border-top-color: #000;
+  border-left-color: #000;
+  border-right-color: #fff;
+  border-bottom-color: #fff;
+}
+.desktop-window-header-btn:first-child::before {
+  content: "_";
+  width: 100%;
+  position: relative;
+  left: -2px;
+  bottom: 2px;
+  font-weight: bold;
+}
+.desktop-window-header-btn:nth-child(2)::before {
+  content: "";
+  width: 8px;
+  height: 6px;
+  border: 2px solid rgb(80, 80, 80);
+  border-top-width: 4px;
+}
+.desktop-window-header-btn:last-child {
+  margin-left: 5px;
 }
 
 .desktop-label {
