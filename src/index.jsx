@@ -19,6 +19,7 @@ const desktopLabels = [
   },
 ];
 
+const desktopContent = document.querySelector(".desktop-content");
 const desktopWindow = document.querySelector(".desktop-window");
 const desktopWindowHeaderBtns = document.querySelector(
   "#desktop-window-header-btns"
@@ -35,7 +36,7 @@ desktopWindowHeaderBtns.addEventListener("click", (event) => {
     case "resize":
       return console.log("resize");
     default:
-      return (desktopWindow.style.display = "none");
+      return desktopContent.removeChild(desktopWindow);
   }
 });
 createDesktopLabels(desktopLabels);

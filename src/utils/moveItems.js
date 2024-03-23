@@ -9,20 +9,15 @@ function moveDesktopItems(event) {
   if (outOfScreenY || outOfScreenX) {
     document.removeEventListener("mousemove", moveDesktopItems);
   }
-  icon.style.top = `${event.clientY - 25}px`;
-  icon.style.left = `${event.clientX - 45}px`;
+  icon.style.top = `${event.clientY}px`;
+  icon.style.left = `${event.clientX}px`;
 }
 export function onMouseDown(event) {
-  const icon = event.target.closest("div");
-  icon.style.top = `${event.clientY - 25}px`;
-  icon.style.left = `${event.clientX - 45}px`;
-  icon.style.zIndex = 1;
   document.addEventListener("mousemove", moveDesktopItems);
 }
 export function onMouseUp(event) {
   const icon = event.target.closest("div");
-  icon.style.top = `${event.clientY - 50}px`;
-  icon.style.left = `${event.clientX - 50}px`;
+
   icon.style.zIndex = 0;
   document.removeEventListener("mousemove", moveDesktopItems);
 }
@@ -42,20 +37,18 @@ function moveMobileItems(event) {
   if (outOfScreenY || outOfScreenX) {
     document.removeEventListener("touchmove", moveMobileItems);
   }
-  icon.style.top = `${event.touches[0]?.clientY - 25}px`;
-  icon.style.left = `${event.touches[0]?.clientX - 45}px`;
+  icon.style.top = `${event.touches[0]?.clientY}px`;
+  icon.style.left = `${event.touches[0]?.clientX}px`;
 }
 export function onTouchStart(event) {
   const icon = event.target.closest("div");
-  icon.style.top = `${event.touches[0]?.clientY - 25}px`;
-  icon.style.left = `${event.touches[0]?.clientX - 45}px`;
+
   icon.style.zIndex = 1;
   document.addEventListener("touchmove", moveMobileItems);
 }
 export function onTouchEnd(event) {
   const icon = event.target.closest("div");
-  icon.style.top = `${event.touches[0]?.clientY - 50}px`;
-  icon.style.left = `${event.touches[0]?.clientX - 50}px`;
+
   icon.style.zIndex = 0;
   document.removeEventListener("touchmove", moveMobileItems);
 }

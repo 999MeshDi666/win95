@@ -19,7 +19,6 @@ export function createDesktopLabels(labels) {
     desktopLabelIcon.src = `./assets/images/${label.name}.png`;
     desktopLabelIcon.alt = label.name;
     desktopLabelIcon.className = "desktop-label-icon";
-    desktopLabelIcon.draggable = false;
 
     const desktopLabelTitle = document.createElement("p");
     desktopLabelTitle.textContent = label.title;
@@ -27,25 +26,7 @@ export function createDesktopLabels(labels) {
 
     desktopLabel.appendChild(desktopLabelIcon);
     desktopLabel.appendChild(desktopLabelTitle);
-    desktopLabel.addEventListener("mousedown", onMouseDown);
-    desktopLabel.addEventListener("mouseup", onMouseUp);
-    desktopLabel.addEventListener("touchstart", onTouchStart);
-    desktopLabel.addEventListener("touchend", onTouchEnd);
-    desktopContent.appendChild(desktopLabel);
-  });
-}
 
-export function createDesktopWindows(labels) {
-  labels.forEach((label) => {
-    const desktopWindow = document.createElement("div");
-    const desktopWindowHeader = document.createElement("div");
-    const desktopWindowHeaderPath = document.createElement("div");
-    const desktopWindowHeaderIcon = document.createElement("img");
-    const desktopWindowHeaderTitle = document.createElement("p");
-    const desktopWindowHeaderBtns = document.createElement("div");
-    const desktopWindowHeaderBtn = document.createElement("button");
-    const desktopWindowBody = document.createElement("div");
-    desktopWindow.appendChild(desktopWindowHeader);
-    desktopWindow.appendChild(desktopWindowBody);
+    desktopContent.appendChild(desktopLabel);
   });
 }
