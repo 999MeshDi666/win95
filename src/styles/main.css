@@ -24,6 +24,7 @@ button {
   margin: 0;
   padding: 0;
 }
+
 body {
   background-color: #008081;
   color: #fff;
@@ -31,6 +32,14 @@ body {
   letter-spacing: 1.5px;
   font-size: 0.875rem;
   overflow: hidden;
+}
+[class^="ico-"],
+[class*=" ico-"] {
+  font: normal 0.875em/1 Arial, sans-serif;
+  display: inline-block;
+}
+.ico-times::before {
+  content: "\2716";
 }
 .container {
   margin: 0 auto;
@@ -60,6 +69,7 @@ body {
   margin: 0 auto;
   padding: 2px;
   border-width: 3px;
+  z-index: 2;
 }
 .desktop-window-header {
   display: flex;
@@ -80,8 +90,8 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 14px;
-  width: 16px;
+  height: 12.5px;
+  width: 14px;
   background-color: #c0c0c0;
   border-width: 2px;
   cursor: pointer;

@@ -14,7 +14,6 @@ function moveDesktopItems(event) {
 }
 export function onMouseDown(event) {
   const icon = event.target.closest("div");
-  console.log(icon);
   icon.style.top = `${event.clientY - 25}px`;
   icon.style.left = `${event.clientX - 45}px`;
   icon.style.zIndex = 1;

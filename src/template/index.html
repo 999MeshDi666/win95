@@ -20,11 +20,23 @@
               />
               <p class="desktop-window-header-title">My Computer</p>
             </div>
-            <div class="desktop-window-header-wrapper">
-              <button class="desktop-window-header-btn desktop-border"></button>
-              <button class="desktop-window-header-btn desktop-border"></button>
-              <button class="desktop-window-header-btn desktop-border">
-                <i class="fa-solid fa-xmark fa"></i>
+            <div
+              class="desktop-window-header-wrapper"
+              id="desktop-window-header-btns"
+            >
+              <button
+                class="desktop-window-header-btn desktop-border"
+                data-action="collapse"
+              ></button>
+              <button
+                class="desktop-window-header-btn desktop-border"
+                data-action="resize"
+              ></button>
+              <button
+                class="desktop-window-header-btn desktop-border"
+                data-action="close"
+              >
+                <i class="ico-times" role="img" aria-label="Cancel"></i>
               </button>
             </div>
           </div>
@@ -34,9 +46,5 @@
 
       <footer></footer>
     </main>
-    <script
-      src="https://kit.fontawesome.com/9abda80b04.js"
-      crossorigin="anonymous"
-    ></script>
   </body>
 </html>
