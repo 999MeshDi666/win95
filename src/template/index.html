@@ -9,7 +9,6 @@
     <main class="container">
       <article class="desktop-content" draggable="false">
         <!-- rendered desktop content from javaScript -->
-
         <div class="desktop-window desktop-border">
           <div class="desktop-window-header">
             <div class="desktop-window-header-wrapper">
@@ -25,15 +24,15 @@
               id="desktop-window-header-btns"
             >
               <button
-                class="desktop-window-header-btn desktop-border"
+                class="desktop-button desktop-window-header-btn"
                 data-action="collapse"
               ></button>
               <button
-                class="desktop-window-header-btn desktop-border"
+                class="desktop-button desktop-window-header-btn"
                 data-action="resize"
               ></button>
               <button
-                class="desktop-window-header-btn desktop-border"
+                class="desktop-button desktop-window-header-btn"
                 data-action="close"
               >
                 <i class="ico-times" role="img" aria-label="Cancel"></i>
@@ -44,7 +43,9 @@
         </div>
       </article>
 
-      <footer></footer>
+      <footer class="desktop-footer">
+        <button class="desktop-button desktop-footer-btn">Start</button>
+      </footer>
     </main>
   </body>
 </html>
