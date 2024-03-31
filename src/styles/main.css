@@ -39,12 +39,19 @@ body {
 .ico-times::before {
   content: "\2716";
 }
-.desktop-border {
+.desktop-border-outset {
   border-style: outset;
   border-top-color: #fff;
   border-left-color: #fff;
   border-right-color: #000;
   border-bottom-color: #000;
+}
+.desktop-border-inset {
+  border-style: solid;
+  border-top-color: #000;
+  border-left-color: #000;
+  border-right-color: #fff;
+  border-bottom-color: #fff;
 }
 .desktop-button {
   background-color: var(--gray);
@@ -142,10 +149,12 @@ body {
   height: 40px;
   border: 3px outset;
   box-sizing: border-box;
+  gap: 4px;
 }
 .desktop-footer-btn {
   display: flex;
   align-items: center;
+  gap: 5px;
   padding: 0 5px;
   font-weight: bold;
   font-size: 1rem;
@@ -158,12 +167,52 @@ body {
   display: block;
   width: 30px;
   height: 30px;
-  margin-right: 5px;
+}
+.desktop-footer-tabs {
+  display: flex;
+  gap: 4px;
+  width: 100%;
+}
+
+.desktop-footer-tab {
+  display: flex;
+  align-items: center;
+  padding: 4px;
+  user-select: none;
+  -webkit-user-select: none;
+  gap: 5px;
+}
+.desktop-footer-tab-img {
+  width: 20px;
+}
+.desktop-footer-tab-title {
+  display: none;
+}
+.desktop-footer-panel {
+  padding: 4px;
+  border: 1px solid;
+  border-top-color: #000;
+  border-left-color: #000;
+  border-right-color: #fff;
+  border-bottom-color: #fff;
+}
+.desktop-footer-panel-clock {
+  color: #000;
 }
 @media (min-width: 576px) {
+  .desktop-footer-tab-title {
+    display: block;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 50px;
+  }
 }
 
 @media (min-width: 768px) {
+  .desktop-footer-tab-title {
+    width: 110px;
+  }
 }
 
 @media (min-width: 992px) {
