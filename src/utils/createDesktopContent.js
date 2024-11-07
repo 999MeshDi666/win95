@@ -1,6 +1,6 @@
 import { onMouseDown, onMouseUp, onTouchStart, onTouchEnd } from "./moveItems";
 
-const desktopContent = document.querySelector(".desktop-content");
+const desktopContent = document.querySelector(".desktop_content");
 
 export function createDesktopLabels(labels) {
   let positionY = 20;
@@ -9,7 +9,7 @@ export function createDesktopLabels(labels) {
     if (desktopContent.clientHeight < positionY) return;
 
     const desktopLabel = document.createElement("div");
-    desktopLabel.className = "desktop-label";
+    desktopLabel.className = "desktop_label";
     desktopLabel.id = label.name;
 
     desktopLabel.style.top = `${positionY}px`;
@@ -18,11 +18,11 @@ export function createDesktopLabels(labels) {
     const desktopLabelIcon = document.createElement("img");
     desktopLabelIcon.src = `./assets/images/${label.name}.png`;
     desktopLabelIcon.alt = label.name;
-    desktopLabelIcon.className = "desktop-label-icon";
+    desktopLabelIcon.className = "desktop_label_icon";
 
     const desktopLabelTitle = document.createElement("p");
     desktopLabelTitle.textContent = label.title;
-    desktopLabelTitle.className = "desktop-label-title";
+    desktopLabelTitle.className = "desktop_label_title";
 
     desktopLabel.appendChild(desktopLabelIcon);
     desktopLabel.appendChild(desktopLabelTitle);

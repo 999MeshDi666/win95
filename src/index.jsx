@@ -18,11 +18,12 @@ const desktopLabels = [
     title: "Disc",
   },
 ];
+createDesktopLabels(desktopLabels);
 
-const desktopContent = document.querySelector(".desktop-content");
-const desktopWindow = document.querySelector(".desktop-window");
+const desktopContent = document.querySelector(".desktop_content");
+const desktopWindow = document.querySelector(".desktop_window");
 const desktopWindowHeaderBtns = document.querySelector(
-  "#desktop-window-header-btns"
+  "#desktop_window_header_btns"
 );
 
 desktopWindowHeaderBtns.addEventListener("click", (event) => {
@@ -39,4 +40,14 @@ desktopWindowHeaderBtns.addEventListener("click", (event) => {
       return desktopContent.removeChild(desktopWindow);
   }
 });
-createDesktopLabels(desktopLabels);
+
+const clock = document.querySelector(".desktop_footer_panel_clock");
+const formattedDate = new Date().toLocaleDateString("en-US", {
+  hour: "numeric",
+  minute: "numeric",
+  hour12: true,
+});
+clock.textContent = formattedDate.substring(
+  formattedDate.indexOf(",") + 1,
+  formattedDate.length[-1]
+);
