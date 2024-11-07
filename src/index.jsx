@@ -42,12 +42,20 @@ desktopWindowHeaderBtns.addEventListener("click", (event) => {
 });
 
 const clock = document.querySelector(".desktop_footer_panel_clock");
-const formattedDate = new Date().toLocaleDateString("en-US", {
-  hour: "numeric",
-  minute: "numeric",
-  hour12: true,
-});
-clock.textContent = formattedDate.substring(
-  formattedDate.indexOf(",") + 1,
-  formattedDate.length[-1]
-);
+
+function tick() {
+  const formattedDate = new Date().toLocaleDateString("en-US", {
+    hour: "numeric",
+    minute: "numeric",
+    hour12: true,
+  });
+  const currentTime = formattedDate.substring(
+    formattedDate.indexOf(",") + 1,
+    formattedDate.length[-1]
+  );
+
+  clock.textContent = currentTime;
+  console.log(currentTime);
+  setInterval(tick, 60000);
+}
+tick();
