@@ -33,9 +33,9 @@ desktopWindowHeaderBtns.addEventListener("click", (event) => {
 
   switch (dataAction) {
     case "collapse":
-      return console.log("collapse");
+      return (desktopWindow.style.display = "none");
     case "resize":
-      return console.log("resize");
+      return desktopWindow.classList.toggle("desktop_window_resized");
     default:
       return desktopContent.removeChild(desktopWindow);
   }
