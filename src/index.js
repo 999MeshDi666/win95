@@ -41,6 +41,13 @@ desktopWindowHeaderBtns.addEventListener("click", (event) => {
   }
 });
 
+const desktopFooterTabs = document.querySelectorAll(".desktop_footer_tab");
+desktopFooterTabs.forEach((tab) => {
+  tab.addEventListener("click", (event) => {
+    tab.classList.toggle("desktop_border_inset");
+  });
+});
+
 const clock = document.querySelector(".desktop_footer_panel_clock");
 
 function tick() {
