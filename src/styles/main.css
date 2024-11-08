@@ -84,6 +84,7 @@ a {
 
 /*desktop windows */
 .desktop_window {
+  height: 100vh;
   background-color: var(--gray);
   padding: 2px;
   border-width: 3px;
@@ -129,7 +130,9 @@ a {
 .desktop_window_header_btn:last-child {
   margin-left: 5px;
 }
-
+.window_body_content {
+  height: 82vh;
+}
 .resume_header {
   display: flex;
   gap: 18px;
@@ -156,7 +159,6 @@ a {
 .resume_content {
   padding: 5px;
   background-color: white;
-
   font-weight: bold;
   overflow: auto;
 }
@@ -261,8 +263,12 @@ a {
   }
 
   .desktop_window_resized {
-    width: 50%;
+    width: 50vw;
+    height: 50vh;
     left: 10%;
+  }
+  .window_body_content_resized {
+    height: 38vh;
   }
 }
 

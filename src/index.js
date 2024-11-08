@@ -22,6 +22,7 @@ createDesktopLabels(desktopLabels);
 
 const desktopContent = document.querySelector(".desktop_content");
 const desktopWindow = document.querySelector(".desktop_window");
+const windowBodyContent = document.querySelector(".window_body_content");
 const desktopWindowHeaderBtns = document.querySelector(
   "#desktop_window_header_btns"
 );
@@ -33,11 +34,15 @@ desktopWindowHeaderBtns.addEventListener("click", (event) => {
 
   switch (dataAction) {
     case "collapse":
-      return (desktopWindow.style.display = "none");
+      desktopWindow.style.display = "none";
+      break;
     case "resize":
-      return desktopWindow.classList.toggle("desktop_window_resized");
+      desktopWindow.classList.toggle("desktop_window_resized");
+      windowBodyContent.classList.toggle("window_body_content_resized");
+      break;
     default:
-      return desktopContent.removeChild(desktopWindow);
+      desktopContent.removeChild(desktopWindow);
+      break;
   }
 });
 
