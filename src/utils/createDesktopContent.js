@@ -1,5 +1,3 @@
-import { onMouseDown, onMouseUp, onTouchStart, onTouchEnd } from "./moveItems";
-
 const desktopContent = document.querySelector(".desktop_content");
 
 export function createDesktopLabels(labels) {

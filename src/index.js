@@ -1,6 +1,6 @@
 import "./styles/main.css";
 import "./assets/images/note.png";
-import "./assets/images/computer.png";
+import "./assets/images/folder.png";
 import "./assets/images/disc.png";
 import { createDesktopLabels } from "./utils/createDesktopContent";
 
@@ -10,8 +10,8 @@ const desktopLabels = [
     title: "resume.txt",
   },
   {
-    name: "computer",
-    title: "My Computer",
+    name: "folder",
+    title: "My projects",
   },
   {
     name: "disc",

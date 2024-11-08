@@ -130,33 +130,30 @@ a {
 .desktop_window_header_btn:last-child {
   margin-left: 5px;
 }
-.window_body_content {
-  height: 82vh;
+
+.desktop_window_body {
+  color: black;
 }
-.resume_header {
+
+.desktop_window_body_header {
   display: flex;
   gap: 18px;
   padding: 5px 8px;
 }
-.resume_header:visited {
-  text-decoration: underline;
-}
-.resume_header_link {
+
+.desktop_window_body_header_link {
   color: #000;
 }
-.resume_header_link:hover {
+.desktop_window_body_header_link:hover {
   color: #2c2c2c;
 }
-.resume_header_link::first-letter {
+.desktop_window_body_header_link::first-letter {
   text-decoration: underline;
   text-decoration-thickness: 2px;
   text-underline-offset: 2px;
 }
-.resume,
-.resume_content {
-  color: black;
-}
-.resume_content {
+.window_body_content {
+  height: 82vh;
   padding: 5px;
   background-color: white;
   font-weight: bold;
