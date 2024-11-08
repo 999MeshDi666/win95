@@ -85,17 +85,12 @@ a {
 /*desktop windows */
 .desktop_window {
   background-color: var(--gray);
-
   padding: 2px;
   border-width: 3px;
   position: relative;
   z-index: 2;
 }
-.desktop_window_resized {
-  width: 50%;
 
-  left: 20px;
-}
 .desktop_window_header {
   display: flex;
   justify-content: space-between;
@@ -165,9 +160,20 @@ a {
   font-weight: bold;
   overflow: auto;
 }
-.resume_content_title {
+
+.resume_content_header {
   text-align: center;
 }
+.resume_content,
+.resume_content_body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.resume_content_body {
+  gap: 5px;
+}
+
 /* desktop labels */
 .desktop_label {
   width: 90px;
@@ -184,11 +190,13 @@ a {
 .desktop_footer {
   display: flex;
   align-items: center;
+  gap: 4px;
   background-color: var(--gray);
   height: 40px;
   border: 3px outset;
   box-sizing: border-box;
-  gap: 4px;
+  position: relative;
+  z-index: 2;
 }
 .desktop_footer_btn {
   display: flex;
@@ -250,6 +258,11 @@ a {
     white-space: nowrap;
     overflow: hidden;
     width: 50px;
+  }
+
+  .desktop_window_resized {
+    width: 50%;
+    left: 10%;
   }
 }
 
