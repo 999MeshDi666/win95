@@ -7,7 +7,7 @@ import { createDesktopLabels } from "./utils/createDesktopContent";
 const desktopLabels = [
   {
     name: "note",
-    title: "resume.doc",
+    title: "resume.txt",
   },
   {
     name: "computer",

@@ -1,7 +1,7 @@
-//move items in desktop device function
-function moveDesktopItems(event) {
-  const icon = event.target.closest("div");
-  if (!icon) return;
+//move items in desktop device
+export function moveDesktopItems(event) {
+  const elementBody = event.target.closest("div");
+  if (!elementBody) return;
 
   const outOfScreenY = event.clientY > window.innerHeight || event.clientY < 0;
   const outOfScreenX = event.clientX > window.innerWidth || event.clientX < 0;
@@ -9,23 +9,14 @@ function moveDesktopItems(event) {
   if (outOfScreenY || outOfScreenX) {
     document.removeEventListener("mousemove", moveDesktopItems);
   }
-  icon.style.top = `${event.clientY}px`;
-  icon.style.left = `${event.clientX}px`;
-}
-export function onMouseDown(event) {
-  document.addEventListener("mousemove", moveDesktopItems);
-}
-export function onMouseUp(event) {
-  const icon = event.target.closest("div");
-
-  icon.style.zIndex = 0;
-  document.removeEventListener("mousemove", moveDesktopItems);
+  elementBody.style.top = `${event.clientY}px`;
+  elementBody.style.left = `${event.clientX}px`;
 }
 
-//move items in mobile device function
-function moveMobileItems(event) {
-  const icon = event.target.closest("div");
-  if (!icon) return;
+//move items in mobile device
+export function moveMobileItems(event) {
+  const elementBody = event.target.closest("div");
+  if (!elementBody) return;
 
   const outOfScreenY =
     event.touches[0]?.clientY > window.innerHeight ||
@@ -37,18 +28,11 @@ function moveMobileItems(event) {
   if (outOfScreenY || outOfScreenX) {
     document.removeEventListener("touchmove", moveMobileItems);
   }
-  icon.style.top = `${event.touches[0]?.clientY}px`;
-  icon.style.left = `${event.touches[0]?.clientX}px`;
+  elementBody.style.top = `${event.touches[0]?.clientY}px`;
+  elementBody.style.left = `${event.touches[0]?.clientX}px`;
 }
-export function onTouchStart(event) {
-  const icon = event.target.closest("div");
 
-  icon.style.zIndex = 1;
-  document.addEventListener("touchmove", moveMobileItems);
-}
-export function onTouchEnd(event) {
-  const icon = event.target.closest("div");
-
-  icon.style.zIndex = 0;
-  document.removeEventListener("touchmove", moveMobileItems);
+export function onElementMove(eventName, device = "desktop") {
+  const deviceCb = device === "desktop" ? moveDesktopItems : moveMobileItems;
+  document.addEventListener(eventName, deviceCb);
 }
