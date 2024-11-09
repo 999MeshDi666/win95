@@ -1,10 +1,8 @@
-const desktopContent = document.querySelector(".desktop_content");
-
-export function createDesktopLabels(labels) {
+export function createDesktopLabels(labels, parent) {
   let positionY = 20;
 
   labels.forEach((label) => {
-    if (desktopContent.clientHeight < positionY) return;
+    if (parent?.clientHeight < positionY) return;
 
     const desktopLabel = document.createElement("div");
     desktopLabel.className = "desktop_label";
@@ -14,7 +12,7 @@ export function createDesktopLabels(labels) {
     positionY += 100;
 
     const desktopLabelIcon = document.createElement("img");
-    desktopLabelIcon.src = `./assets/images/${label.name}.png`;
+    desktopLabelIcon.src = label.image;
     desktopLabelIcon.alt = label.name;
     desktopLabelIcon.className = "desktop_label_icon";
 
@@ -25,6 +23,6 @@ export function createDesktopLabels(labels) {
     desktopLabel.appendChild(desktopLabelIcon);
     desktopLabel.appendChild(desktopLabelTitle);
 
-    desktopContent.appendChild(desktopLabel);
+    parent?.appendChild(desktopLabel);
   });
 }

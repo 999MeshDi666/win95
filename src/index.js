@@ -1,26 +1,26 @@
 import "./styles/main.css";
 import "./assets/images/note.png";
 import "./assets/images/folder.png";
+import "./assets/images/computer.png";
 import "./assets/images/disc.png";
 import { createDesktopLabels } from "./utils/createDesktopContent";
+
+const desktopContent = document.querySelector(".desktop_content");
 
 const desktopLabels = [
   {
     name: "note",
     title: "resume.txt",
+    image: "./assets/images/note.png",
   },
   {
-    name: "folder",
-    title: "My projects",
-  },
-  {
-    name: "disc",
-    title: "Disc",
+    name: "computer",
+    title: "My computer",
+    image: "./assets/images/computer.png",
   },
 ];
-createDesktopLabels(desktopLabels);
+createDesktopLabels(desktopLabels, desktopContent);
 
-const desktopContent = document.querySelector(".desktop_content");
 const desktopWindow = document.querySelector(".desktop_window");
 const windowBodyContent = document.querySelector(".window_body_content");
 const desktopWindowHeaderBtns = document.querySelector(

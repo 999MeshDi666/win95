@@ -29,6 +29,10 @@ body {
 
 a {
   text-decoration: none;
+  color: #000;
+}
+a:hover {
+  color: #2c2c2c;
 }
 .container {
   margin: 0 auto;
@@ -141,12 +145,6 @@ a {
   padding: 5px 8px;
 }
 
-.desktop_window_body_header_link {
-  color: #000;
-}
-.desktop_window_body_header_link:hover {
-  color: #2c2c2c;
-}
 .desktop_window_body_header_link::first-letter {
   text-decoration: underline;
   text-decoration-thickness: 2px;
@@ -177,7 +175,6 @@ a {
 .desktop_label {
   width: 90px;
   padding: 5px;
-  display: inline-block;
   text-align: center;
   position: absolute;
 }
