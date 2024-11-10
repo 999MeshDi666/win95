@@ -88,9 +88,9 @@ a:hover {
 
 /*desktop windows */
 .desktop_window {
-  height: 100vh;
   background-color: var(--gray);
   padding: 2px;
+  padding-bottom: 20px;
   border-width: 3px;
   position: relative;
   z-index: 2;
@@ -152,7 +152,7 @@ a:hover {
   text-underline-offset: 2px;
 }
 .window_body_content {
-  height: 82vh;
+  height: 80vh;
   padding: 5px;
   background-color: white;
   font-weight: bold;
@@ -260,7 +260,6 @@ a:hover {
 
   .desktop_window_resized {
     width: 50vw;
-    height: 50vh;
     left: 10%;
   }
   .window_body_content_resized {

@@ -5,62 +5,71 @@ import "./assets/images/computer.png";
 import "./assets/images/disc.png";
 
 const desktopLabels = document.querySelectorAll(".desktop_label");
-
-desktopLabels.forEach((desktopLabel) => {
-  desktopLabel.addEventListener("dblclick", (event) => {
-    const dataTarget = desktopLabel.getAttribute("data-target");
-
-    const desktopWindow = document.querySelector(`#window_${dataTarget}`);
-    desktopWindow.style.display = "block";
-
-    const footerTab = document.querySelector(`#footer_tab_${dataTarget}`);
-    footerTab.style.display = "flex";
-    footerTab.classList.remove("desktop_border_inset");
-  });
-});
-
 const desktopWindowHeaderBtns = document.querySelectorAll(
   "#desktop_window_header_btns"
 );
-desktopWindowHeaderBtns.forEach((desktopWindowHeaderBtn) => {
-  desktopWindowHeaderBtn.addEventListener("click", (event) => {
-    const button = event.target.closest("button");
-    const dataTarget = desktopWindowHeaderBtn.getAttribute("data-target");
-    const desktopWindow = document.querySelector(`#window_${dataTarget}`);
-    const windowBodyContent = document.querySelector(
-      `#window_body_${dataTarget}`
-    );
-    const footerTab = document.querySelector(`#footer_tab_${dataTarget}`);
+const desktopFooterTabs = document.querySelectorAll(".desktop_footer_tab");
 
-    if (!button || !desktopWindowHeaderBtn.contains(button)) return;
-    const dataAction = button.getAttribute("data-action");
+function handleOpenWindows(dataTarget) {
+  const desktopWindow = document.querySelector(`#window_${dataTarget}`);
+  desktopWindow.style.display = "block";
+  const footerTab = document.querySelector(`#footer_tab_${dataTarget}`);
+  footerTab.style.display = "flex";
+  footerTab.classList.remove("desktop_border_inset");
+}
 
-    switch (dataAction) {
-      case "collapse":
-        desktopWindow.style.display = "none";
-        footerTab.classList.toggle("desktop_border_inset");
-        break;
-      case "resize":
-        desktopWindow.classList.toggle("desktop_window_resized");
-        windowBodyContent.classList.toggle("window_body_content_resized");
-        break;
-      default:
-        desktopWindow.style.display = "none";
-        footerTab.style.display = "none";
-        break;
-    }
-  });
+function handleWindowHeaderActions(event, desktopWindowHeaderBtn) {
+  const button = event.target.closest("button");
+  if (!button || !desktopWindowHeaderBtn.contains(button)) return;
+  const dataAction = button.getAttribute("data-action");
+  const dataTarget = desktopWindowHeaderBtn.getAttribute("data-target");
+
+  const desktopWindow = document.querySelector(`#window_${dataTarget}`);
+  const windowBodyContent = document.querySelector(
+    `#window_body_${dataTarget}`
+  );
+  const footerTab = document.querySelector(`#footer_tab_${dataTarget}`);
+
+  switch (dataAction) {
+    case "collapse":
+      desktopWindow.style.display = "none";
+      footerTab.classList.toggle("desktop_border_inset");
+      break;
+    case "resize":
+      desktopWindow.classList.toggle("desktop_window_resized");
+      windowBodyContent.classList.toggle("window_body_content_resized");
+      break;
+    default:
+      desktopWindow.style.display = "none";
+      footerTab.style.display = "none";
+      break;
+  }
+}
+
+desktopLabels.forEach((desktopLabel) => {
+  const dataTarget = desktopLabel.getAttribute("data-target");
+  desktopLabel.addEventListener("dblclick", () =>
+    handleOpenWindows(dataTarget)
+  );
+  desktopLabel.addEventListener("touchend", () =>
+    handleOpenWindows(dataTarget)
+  );
 });
 
-const desktopFooterTabs = document.querySelectorAll(".desktop_footer_tab");
-desktopFooterTabs.forEach((tab) => {
-  tab.addEventListener("click", () => {
-    const dataTarget = tab.getAttribute("data-target");
-    const shouldCollapseWindow = tab.classList.contains("desktop_border_inset");
-    tab.classList.toggle("desktop_border_inset");
+desktopWindowHeaderBtns.forEach((desktopWindowHeaderBtn) => {
+  desktopWindowHeaderBtn.addEventListener("click", (event) =>
+    handleWindowHeaderActions(event, desktopWindowHeaderBtn)
+  );
+});
 
-    const desktopWindow = document.querySelector(`#window_${dataTarget}`);
-    desktopWindow.style.display = shouldCollapseWindow ? "block" : "none";
+desktopFooterTabs.forEach((tab) => {
+  const dataTarget = tab.getAttribute("data-target");
+  const desktopWindow = document.querySelector(`#window_${dataTarget}`);
+
+  tab.addEventListener("click", () => {
+    tab.classList.toggle("desktop_border_inset");
+    const shouldCollapseWindow = tab.classList.contains("desktop_border_inset");
+    desktopWindow.style.display = shouldCollapseWindow ? "none" : "block";
   });
 });
 
