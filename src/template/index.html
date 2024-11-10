@@ -8,8 +8,23 @@
   <body>
     <main class="container">
       <article class="desktop_content" draggable="false">
-        <!-- rendered desktop content from javaScript -->
-        <!-- <div class="desktop_window desktop_border_outset">
+        <div class="desktop_label" data-target="resume">
+          <img
+            src="../assets/images/note.png"
+            alt="resume"
+            class="desktop_label_icon"
+          />
+          <p class="desktop_label_title">resume.txt</p>
+        </div>
+        <div class="desktop_label" style="top: 100px" data-target="computer">
+          <img
+            src="../assets/images/computer.png"
+            alt="computer"
+            class="desktop_label_icon"
+          />
+          <p class="desktop_label_title">My computer</p>
+        </div>
+        <div class="desktop_window desktop_border_outset" id="window_resume">
           <div class="desktop_window_header">
             <div>
               <img
@@ -19,7 +34,7 @@
               />
               <p class="desktop_window_header_title">resume - Notepad</p>
             </div>
-            <div id="desktop_window_header_btns">
+            <div id="desktop_window_header_btns" data-target="resume">
               <button
                 class="desktop_window_header_btn desktop_button"
                 data-action="collapse"
@@ -71,7 +86,10 @@
                 Gmail</a
               >
             </div>
-            <div class="window_body_content desktop_border_inset">
+            <div
+              class="window_body_content desktop_border_inset"
+              id="window_body_resume"
+            >
               <div class="resume_content">
                 <div class="resume_content_header">
                   ----------------------------------------------------------------------
@@ -183,8 +201,8 @@
               </div>
             </div>
           </div>
-        </div> -->
-        <div class="desktop_window desktop_border_outset">
+        </div>
+        <div class="desktop_window desktop_border_outset" id="window_computer">
           <div class="desktop_window_header">
             <div>
               <img
@@ -194,7 +212,7 @@
               />
               <p class="desktop_window_header_title">My computer</p>
             </div>
-            <div id="desktop_window_header_btns">
+            <div id="desktop_window_header_btns" data-target="computer">
               <button
                 class="desktop_window_header_btn desktop_button"
                 data-action="collapse"
@@ -246,7 +264,10 @@
                 Gmail</a
               >
             </div>
-            <div class="window_body_content desktop_border_inset">
+            <div
+              class="window_body_content desktop_border_inset"
+              id="window_body_computer"
+            >
               <div class="my_projects_content">
                 <div class="desktop_label">
                   <img
@@ -271,7 +292,11 @@
       <footer class="desktop_footer">
         <button class="desktop_footer_btn desktop_button">Start</button>
         <div class="desktop_footer_tabs">
-          <div class="desktop_footer_tab desktop_border_outset">
+          <div
+            class="desktop_footer_tab desktop_border_outset"
+            id="footer_tab_resume"
+            data-target="resume"
+          >
             <img
               class="desktop_footer_tab_img"
               src="../assets/images/note.png"
@@ -279,7 +304,20 @@
             />
             <p class="desktop_footer_tab_title">resume.txt</p>
           </div>
+          <div
+            class="desktop_footer_tab desktop_border_outset"
+            id="footer_tab_computer"
+            data-target="computer"
+          >
+            <img
+              class="desktop_footer_tab_img"
+              src="../assets/images/computer.png"
+              alt="tab"
+            />
+            <p class="desktop_footer_tab_title">My computer</p>
+          </div>
         </div>
+
         <div class="desktop_footer_panel">
           <p class="desktop_footer_panel_clock">0:00</p>
         </div>

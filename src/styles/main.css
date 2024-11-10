@@ -94,6 +94,7 @@ a:hover {
   border-width: 3px;
   position: relative;
   z-index: 2;
+  display: none;
 }
 
 .desktop_window_header {
@@ -225,6 +226,7 @@ a:hover {
   -webkit-user-select: none;
   cursor: pointer;
   gap: 5px;
+  display: none;
 }
 
 .desktop_footer_tab_img {
