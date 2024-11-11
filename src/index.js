@@ -49,23 +49,19 @@ function handleWindowHeaderActions(event, desktopWindowHeaderBtn) {
 }
 
 desktopLabels.forEach((desktopLabel) => {
-  let dblTouchCounter = 0;
-
+  let dblTap = false;
   const dataTarget = desktopLabel.getAttribute("data-target");
   desktopLabel.addEventListener("dblclick", () =>
     handleOpenWindows(dataTarget)
   );
 
   desktopLabel.addEventListener("touchend", () => {
-    setTimeout(() => {
-      dblTouchCounter = 0;
-    }, 500);
-
-    dblTouchCounter += 1;
-    if (dblTouchCounter === 2) {
-      handleOpenWindows(dataTarget);
-      dblTouchCounter = 0;
+    if (!dblTap) {
+      dblTap = true;
+      setTimeout(() => (dblTap = false), 500);
+      return false;
     }
+    handleOpenWindows(dataTarget);
   });
   const handleMoveDesktopLabel = (event) => {
     moveDesktopItems(event, desktopLabel, handleMoveDesktopLabel);
