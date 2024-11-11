@@ -3,6 +3,7 @@ import "./assets/images/note.png";
 import "./assets/images/folder.png";
 import "./assets/images/computer.png";
 import "./assets/images/disc.png";
+import { moveDesktopItems } from "./utils/moveItems";
 
 const desktopLabels = document.querySelectorAll(".desktop_label");
 const desktopWindowHeaderBtns = document.querySelectorAll(
@@ -47,13 +48,33 @@ function handleWindowHeaderActions(event, desktopWindowHeaderBtn) {
 }
 
 desktopLabels.forEach((desktopLabel) => {
+  let dblTouchCounter = 0;
   const dataTarget = desktopLabel.getAttribute("data-target");
   desktopLabel.addEventListener("dblclick", () =>
     handleOpenWindows(dataTarget)
   );
-  desktopLabel.addEventListener("touchend", () =>
-    handleOpenWindows(dataTarget)
-  );
+  desktopLabel.addEventListener("touchend", () => {
+    dblTouchCounter += 1;
+    if (dblTouchCounter === 2) {
+      handleOpenWindows(dataTarget);
+      dblTouchCounter = 0;
+    }
+  });
+  const handleMoveLabel = (event) => {
+    moveDesktopItems(event, desktopLabel, handleMoveLabel);
+  };
+  desktopLabel.addEventListener("mousedown", () => {
+    document.addEventListener("mousemove", handleMoveLabel);
+  });
+  desktopLabel.addEventListener("mouseup", () => {
+    document.removeEventListener("mousemove", handleMoveLabel);
+  });
+  desktopLabel.addEventListener("touchstart", () => {
+    document.addEventListener("touchmove", handleMoveLabel);
+  });
+  desktopLabel.addEventListener("touchend", () => {
+    document.removeEventListener("touchmove", handleMoveLabel);
+  });
 });
 
 desktopWindowHeaderBtns.forEach((desktopWindowHeaderBtn) => {
