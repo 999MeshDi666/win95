@@ -13,6 +13,7 @@ export function moveDesktopItems(
   if (outOfScreenY || outOfScreenX) {
     document.removeEventListener(eventType, handleMoveItem);
   }
-  elementBody.style.top = clientY + "px";
-  elementBody.style.left = clientX + "px";
+  elementBody.style.top = clientY - 20 + "px";
+  elementBody.style.left = clientX - 40 + "px";
+  elementBody.style.zIndex = 2;
 }
