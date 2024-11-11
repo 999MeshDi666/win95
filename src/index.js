@@ -10,6 +10,7 @@ const desktopWindowHeaderBtns = document.querySelectorAll(
   "#desktop_window_header_btns"
 );
 const desktopFooterTabs = document.querySelectorAll(".desktop_footer_tab");
+const desktopWindows = document.querySelectorAll(".desktop_window");
 
 function handleOpenWindows(dataTarget) {
   const desktopWindow = document.querySelector(`#window_${dataTarget}`);
@@ -49,31 +50,64 @@ function handleWindowHeaderActions(event, desktopWindowHeaderBtn) {
 
 desktopLabels.forEach((desktopLabel) => {
   let dblTouchCounter = 0;
+
   const dataTarget = desktopLabel.getAttribute("data-target");
   desktopLabel.addEventListener("dblclick", () =>
     handleOpenWindows(dataTarget)
   );
+
   desktopLabel.addEventListener("touchend", () => {
+    setTimeout(() => {
+      dblTouchCounter = 0;
+    }, 500);
+
     dblTouchCounter += 1;
     if (dblTouchCounter === 2) {
       handleOpenWindows(dataTarget);
       dblTouchCounter = 0;
     }
   });
-  const handleMoveLabel = (event) => {
-    moveDesktopItems(event, desktopLabel, handleMoveLabel);
+  const handleMoveDesktopLabel = (event) => {
+    moveDesktopItems(event, desktopLabel, handleMoveDesktopLabel);
+  };
+  const handleMoveMobileLabel = (event) => {
+    moveDesktopItems(event, desktopLabel, handleMoveMobileLabel, "touchmove");
   };
   desktopLabel.addEventListener("mousedown", () => {
-    document.addEventListener("mousemove", handleMoveLabel);
+    document.addEventListener("mousemove", handleMoveDesktopLabel);
   });
   desktopLabel.addEventListener("mouseup", () => {
-    document.removeEventListener("mousemove", handleMoveLabel);
+    document.removeEventListener("mousemove", handleMoveDesktopLabel);
   });
   desktopLabel.addEventListener("touchstart", () => {
-    document.addEventListener("touchmove", handleMoveLabel);
+    document.addEventListener("touchmove", handleMoveMobileLabel);
   });
   desktopLabel.addEventListener("touchend", () => {
-    document.removeEventListener("touchmove", handleMoveLabel);
+    console.log("end");
+    document.removeEventListener("touchmove", handleMoveMobileLabel);
+  });
+});
+
+desktopWindows.forEach((desktopWindow) => {
+  const handleMoveMobileWindow = (event) => {
+    moveDesktopItems(event, desktopWindow, handleMoveMobileWindow, "touchmove");
+  };
+  const handleMoveDesktopWindow = (event) => {
+    moveDesktopItems(event, desktopWindow, handleMoveDesktopWindow);
+  };
+  desktopWindow.addEventListener("mousedown", () => {
+    document.addEventListener("mousemove", handleMoveDesktopWindow);
+  });
+  desktopWindow.addEventListener("mouseup", () => {
+    document.removeEventListener("mousemove", handleMoveDesktopWindow);
+  });
+  desktopWindow.addEventListener("touchstart", () => {
+    console.log("start");
+    document.addEventListener("touchmove", handleMoveMobileWindow);
+  });
+  desktopWindow.addEventListener("touchend", () => {
+    console.log("end");
+    document.removeEventListener("touchmove", handleMoveMobileWindow);
   });
 });
 
