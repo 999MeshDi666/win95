@@ -130,8 +130,23 @@ desktopFooterTabs.forEach((tab) => {
   });
 });
 
+const desktopFooterBtn = document.querySelector(".desktop_footer_btn");
+const desktopFooterPanel = document.querySelector(".desktop_footer_panel");
+desktopFooterBtn.addEventListener("click", () => {
+  desktopFooterPanel.classList.toggle("desktop_footer_panel_hidden");
+});
+
+const desktopFooterPanelContentLabels = document.querySelectorAll(
+  ".desktop_footer_panel_content_label"
+);
+desktopFooterPanelContentLabels.forEach((desktopFooterPanelContentLabel) => {
+  const dataTarget = desktopFooterPanelContentLabel.getAttribute("data-target");
+  desktopFooterPanelContentLabel.addEventListener("click", () => {
+    handleOpenWindows(dataTarget);
+  });
+});
 //clock timer
-const clock = document.querySelector(".desktop_footer_panel_clock");
+const clock = document.querySelector(".desktop_footer_toolbar_clock");
 
 function tick() {
   const formattedDate = new Date().toLocaleDateString("en-US", {

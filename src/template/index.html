@@ -9,22 +9,16 @@
     <main class="container">
       <article class="desktop_content" draggable="false">
         <div class="desktop_label" data-target="resume">
-          <img
-            src="../assets/images/note.png"
-            alt="resume"
-            class="desktop_label_icon"
-            draggable="false"
-          />
-          <p class="desktop_label_title">resume.txt</p>
+          <img src="../assets/images/note.png" alt="resume" draggable="false" />
+          <p>resume.txt</p>
         </div>
         <div class="desktop_label" style="top: 100px" data-target="computer">
           <img
             src="../assets/images/computer.png"
             alt="computer"
-            class="desktop_label_icon"
             draggable="false"
           />
-          <p class="desktop_label_title">My computer</p>
+          <p>My computer</p>
         </div>
         <div class="desktop_window desktop_border_outset" id="window_resume">
           <div class="desktop_window_header">
@@ -292,6 +286,27 @@
       </article>
 
       <footer class="desktop_footer">
+        <div class="desktop_footer_panel desktop_border_outset">
+          <aside class="desktop_footer_panel_aside">
+            <h3>999MeshDi666</h3>
+          </aside>
+          <div class="desktop_footer_panel_content">
+            <div
+              class="desktop_footer_panel_content_label"
+              data-target="resume"
+            >
+              <img src="../assets/images/note.png" alt="resume" />
+              <p>resume.txt</p>
+            </div>
+            <div
+              class="desktop_footer_panel_content_label"
+              data-target="computer"
+            >
+              <img src="../assets/images/computer.png" alt="computer" />
+              <p>My computer</p>
+            </div>
+          </div>
+        </div>
         <button class="desktop_footer_btn desktop_button">Start</button>
         <div class="desktop_footer_tabs">
           <div
@@ -320,8 +335,8 @@
           </div>
         </div>
 
-        <div class="desktop_footer_panel">
-          <p class="desktop_footer_panel_clock">0:00</p>
+        <div class="desktop_footer_toolbar">
+          <p class="desktop_footer_toolbar_clock">0:00</p>
         </div>
       </footer>
     </main>
