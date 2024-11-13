@@ -93,8 +93,8 @@ a:hover {
   padding: 2px;
   padding-bottom: 20px;
   border-width: 3px;
-  position: relative;
-  z-index: 2;
+  position: absolute;
+  width: 100%;
   display: none;
 }
 

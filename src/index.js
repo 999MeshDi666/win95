@@ -71,16 +71,20 @@ desktopLabels.forEach((desktopLabel) => {
   };
   desktopLabel.addEventListener("mousedown", () => {
     document.addEventListener("mousemove", handleMoveDesktopLabel);
+    desktopLabel.style.zIndex = 2;
   });
   desktopLabel.addEventListener("mouseup", () => {
     document.removeEventListener("mousemove", handleMoveDesktopLabel);
+    desktopLabel.style.zIndex = 0;
   });
   desktopLabel.addEventListener("touchstart", () => {
     document.addEventListener("touchmove", handleMoveMobileLabel);
+    desktopLabel.style.zIndex = 2;
   });
   desktopLabel.addEventListener("touchend", () => {
     console.log("end");
     document.removeEventListener("touchmove", handleMoveMobileLabel);
+    desktopLabel.style.zIndex = 0;
   });
 });
 
@@ -93,17 +97,19 @@ desktopWindows.forEach((desktopWindow) => {
   };
   desktopWindow.addEventListener("mousedown", () => {
     document.addEventListener("mousemove", handleMoveDesktopWindow);
+    desktopWindow.style.zIndex = 2;
   });
   desktopWindow.addEventListener("mouseup", () => {
     document.removeEventListener("mousemove", handleMoveDesktopWindow);
+    desktopWindow.style.zIndex = 0;
   });
   desktopWindow.addEventListener("touchstart", () => {
-    console.log("start");
     document.addEventListener("touchmove", handleMoveMobileWindow);
+    desktopWindow.style.zIndex = 2;
   });
   desktopWindow.addEventListener("touchend", () => {
-    console.log("end");
     document.removeEventListener("touchmove", handleMoveMobileWindow);
+    desktopWindow.style.zIndex = 0;
   });
 });
 

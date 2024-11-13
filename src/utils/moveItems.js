@@ -15,5 +15,4 @@ export function moveDesktopItems(
   }
   elementBody.style.top = clientY - 20 + "px";
   elementBody.style.left = clientX - 40 + "px";
-  elementBody.style.zIndex = 2;
 }
