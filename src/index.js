@@ -38,12 +38,18 @@ function handleWindowHeaderActions(event, desktopWindowHeaderBtn) {
       footerTab.classList.toggle("desktop_border_inset");
       break;
     case "resize":
+      if (desktopWindow.classList.contains("desktop_window_resized")) {
+        desktopWindow.style.top = 0;
+        desktopWindow.style.left = 0;
+      }
       desktopWindow.classList.toggle("desktop_window_resized");
       windowBodyContent.classList.toggle("window_body_content_resized");
       break;
     default:
       desktopWindow.style.display = "none";
       footerTab.style.display = "none";
+      desktopWindow.classList.remove("desktop_window_resized");
+      windowBodyContent.classList.remove("window_body_content_resized");
       break;
   }
 }
