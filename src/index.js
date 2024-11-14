@@ -21,6 +21,7 @@ function handleOpenWindows(dataTarget) {
 }
 
 function handleWindowHeaderActions(event, desktopWindowHeaderBtn) {
+  event.stopPropagation();
   const button = event.target.closest("button");
   if (!button || !desktopWindowHeaderBtn.contains(button)) return;
   const dataAction = button.getAttribute("data-action");

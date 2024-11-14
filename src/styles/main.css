@@ -98,6 +98,11 @@ a:hover {
   overflow: hidden;
   display: none;
 }
+.desktop_window_resized {
+  width: 85%;
+  height: 30%;
+  left: 5%;
+}
 
 .desktop_window_header {
   display: flex;
@@ -161,7 +166,9 @@ a:hover {
   font-weight: bold;
   overflow: auto;
 }
-
+.window_body_content_resized {
+  height: 25vh;
+}
 .resume_content_header {
   text-align: center;
 }
