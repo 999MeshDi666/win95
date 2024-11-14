@@ -7,7 +7,7 @@
   </head>
   <body>
     <main class="container">
-      <article class="desktop_content" draggable="false">
+      <div class="desktop_content" draggable="false">
         <div class="desktop_label" data-target="resume">
           <img src="../assets/images/note.png" alt="resume" draggable="false" />
           <p>resume.txt</p>
@@ -20,8 +20,11 @@
           />
           <p>My computer</p>
         </div>
-        <div class="desktop_window desktop_border_outset" id="window_resume">
-          <div class="desktop_window_header">
+        <article
+          class="desktop_window desktop_border_outset"
+          id="window_resume"
+        >
+          <header class="desktop_window_header">
             <div>
               <img
                 src="./assets/images/note.png"
@@ -46,9 +49,9 @@
                 <i class="ico-times" role="img" aria_label="Cancel"></i>
               </button>
             </div>
-          </div>
-          <div class="desktop_window_body">
-            <div class="desktop_window_body_header">
+          </header>
+          <section class="desktop_window_body">
+            <nav class="desktop_window_body_header">
               <a
                 rel="noopener"
                 href="https://github.com/999MeshDi666"
@@ -81,7 +84,7 @@
               >
                 Gmail</a
               >
-            </div>
+            </nav>
             <div
               class="window_body_content desktop_border_inset"
               id="window_body_resume"
@@ -196,10 +199,13 @@
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-        <div class="desktop_window desktop_border_outset" id="window_computer">
-          <div class="desktop_window_header">
+          </section>
+        </article>
+        <article
+          class="desktop_window desktop_border_outset"
+          id="window_computer"
+        >
+          <header class="desktop_window_header">
             <div>
               <img
                 src="./assets/images/computer.png"
@@ -224,9 +230,9 @@
                 <i class="ico-times" role="img" aria_label="Cancel"></i>
               </button>
             </div>
-          </div>
-          <div class="desktop_window_body">
-            <div class="desktop_window_body_header">
+          </header>
+          <section class="desktop_window_body">
+            <nav class="desktop_window_body_header">
               <a
                 rel="noopener"
                 href="https://github.com/999MeshDi666"
@@ -259,7 +265,7 @@
               >
                 Gmail</a
               >
-            </div>
+            </nav>
             <div
               class="window_body_content desktop_border_inset"
               id="window_body_computer"
@@ -281,16 +287,16 @@
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </article>
+          </section>
+        </article>
+      </div>
 
       <footer class="desktop_footer">
         <div class="desktop_footer_panel desktop_border_outset">
           <aside class="desktop_footer_panel_aside">
             <h3>999MeshDi666</h3>
           </aside>
-          <div class="desktop_footer_panel_content">
+          <section class="desktop_footer_panel_content">
             <div
               class="desktop_footer_panel_content_label"
               data-target="resume"
@@ -305,7 +311,7 @@
               <img src="../assets/images/computer.png" alt="computer" />
               <p>My computer</p>
             </div>
-          </div>
+          </section>
         </div>
         <button class="desktop_footer_btn desktop_button">Start</button>
         <div class="desktop_footer_tabs">
