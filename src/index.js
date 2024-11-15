@@ -49,6 +49,8 @@ function handleWindowHeaderActions(event, desktopWindowHeaderBtn) {
       windowBodyContent.classList.toggle("window_body_content_resized");
       break;
     default:
+      desktopWindow.style.top = 0;
+      desktopWindow.style.left = 0;
       desktopWindow.style.display = "none";
       footerTab.style.display = "none";
       desktopWindow.classList.remove("desktop_window_resized");
@@ -75,10 +77,17 @@ desktopLabels.forEach((desktopLabel) => {
       handleOpenWindows(dataTarget);
     });
     const handleMoveDesktopLabel = (event) => {
-      moveDesktopItems(event, desktopLabel, handleMoveDesktopLabel);
+      moveDesktopItems(event, desktopLabel, handleMoveDesktopLabel, 50, 25);
     };
     const handleMoveMobileLabel = (event) => {
-      moveDesktopItems(event, desktopLabel, handleMoveMobileLabel, "touchmove");
+      moveDesktopItems(
+        event,
+        desktopLabel,
+        handleMoveMobileLabel,
+        50,
+        25,
+        "touchmove"
+      );
     };
     desktopLabel.addEventListener("mousedown", () => {
       document.addEventListener("mousemove", handleMoveDesktopLabel);
@@ -103,24 +112,45 @@ desktopLabels.forEach((desktopLabel) => {
 desktopWindowHeaders.forEach((desktopWindowHeader) => {
   const dataTarget = desktopWindowHeader.getAttribute("data-target");
   const desktopWindow = document.querySelector(`#window_${dataTarget}`);
+  let offsetX = 0;
+  let offsetY = 0;
 
-  const handleMoveMobileWindow = (event) => {
-    moveDesktopItems(event, desktopWindow, handleMoveMobileWindow, "touchmove");
-  };
   const handleMoveDesktopWindow = (event) => {
-    moveDesktopItems(event, desktopWindow, handleMoveDesktopWindow);
+    moveDesktopItems(
+      event,
+      desktopWindow,
+      handleMoveDesktopWindow,
+      offsetX,
+      offsetY
+    );
   };
-  desktopWindowHeader.addEventListener("mousedown", () => {
-    document.addEventListener("mousemove", handleMoveDesktopWindow);
+  const handleMoveMobileWindow = (event) => {
+    moveDesktopItems(
+      event,
+      desktopWindow,
+      handleMoveMobileWindow,
+      offsetX,
+      offsetY,
+      "touchmove"
+    );
+  };
+
+  desktopWindowHeader.addEventListener("mousedown", (event) => {
+    offsetX = event.clientX - desktopWindow.offsetLeft;
+    offsetY = event.clientY - desktopWindow.offsetTop;
     desktopWindow.style.zIndex = 2;
+    document.addEventListener("mousemove", handleMoveDesktopWindow);
   });
   desktopWindowHeader.addEventListener("mouseup", () => {
     document.removeEventListener("mousemove", handleMoveDesktopWindow);
     desktopWindow.style.zIndex = 0;
   });
-  desktopWindowHeader.addEventListener("touchstart", () => {
-    document.addEventListener("touchmove", handleMoveMobileWindow);
+  desktopWindowHeader.addEventListener("touchstart", (event) => {
+    offsetX = event.touches[0].clientX - desktopWindow.offsetLeft;
+    offsetY = event.touches[0].clientY - desktopWindow.offsetTop;
+
     desktopWindow.style.zIndex = 2;
+    document.addEventListener("touchmove", handleMoveMobileWindow);
   });
   desktopWindowHeader.addEventListener("touchend", () => {
     document.removeEventListener("touchmove", handleMoveMobileWindow);

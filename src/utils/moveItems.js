@@ -1,7 +1,9 @@
 export function moveDesktopItems(
   event,
-  elementBody,
+  moveableItem,
   handleMoveItem,
+  offsetX,
+  offsetY,
   eventType = "mousemove"
 ) {
   const { clientX, clientY } =
@@ -13,6 +15,7 @@ export function moveDesktopItems(
   if (outOfScreenY || outOfScreenX) {
     document.removeEventListener(eventType, handleMoveItem);
   }
-  elementBody.style.top = clientY - 20 + "px";
-  elementBody.style.left = clientX - 40 + "px";
+
+  moveableItem.style.top = clientY - offsetY + "px";
+  moveableItem.style.left = clientX - offsetX + "px";
 }
