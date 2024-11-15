@@ -62,8 +62,31 @@ function handleWindowHeaderActions(event, desktopWindowHeaderBtn) {
 desktopLabels.forEach((desktopLabel) => {
   let dblTap = false;
   const dataTarget = desktopLabel.getAttribute("data-target");
+  let desktopEventType = "";
 
   if (dataTarget) {
+    const handleMoveDesktopLabel = (event) => {
+      moveDesktopItems(
+        event,
+        desktopLabel,
+        handleMoveDesktopLabel,
+        50,
+        25,
+        desktopEventType
+      );
+    };
+
+    const handleOnMoveStart = (eventType = "mousemove") => {
+      desktopEventType = eventType;
+      desktopLabel.style.zIndex = 2;
+
+      document.addEventListener(eventType, handleMoveDesktopLabel);
+    };
+    const handleOnMoveEnd = (eventType = "mousemove") => {
+      document.removeEventListener(eventType, handleMoveDesktopLabel);
+      desktopLabel.style.zIndex = 0;
+    };
+
     desktopLabel.addEventListener("dblclick", () =>
       handleOpenWindows(dataTarget)
     );
@@ -76,36 +99,19 @@ desktopLabels.forEach((desktopLabel) => {
       }
       handleOpenWindows(dataTarget);
     });
-    const handleMoveDesktopLabel = (event) => {
-      moveDesktopItems(event, desktopLabel, handleMoveDesktopLabel, 50, 25);
-    };
-    const handleMoveMobileLabel = (event) => {
-      moveDesktopItems(
-        event,
-        desktopLabel,
-        handleMoveMobileLabel,
-        50,
-        25,
-        "touchmove"
-      );
-    };
-    desktopLabel.addEventListener("mousedown", () => {
-      document.addEventListener("mousemove", handleMoveDesktopLabel);
-      desktopLabel.style.zIndex = 2;
-    });
-    desktopLabel.addEventListener("mouseup", () => {
-      document.removeEventListener("mousemove", handleMoveDesktopLabel);
-      desktopLabel.style.zIndex = 0;
-    });
-    desktopLabel.addEventListener("touchstart", () => {
-      document.addEventListener("touchmove", handleMoveMobileLabel);
-      desktopLabel.style.zIndex = 2;
-    });
-    desktopLabel.addEventListener("touchend", () => {
-      console.log("end");
-      document.removeEventListener("touchmove", handleMoveMobileLabel);
-      desktopLabel.style.zIndex = 0;
-    });
+
+    desktopLabel.addEventListener("mousedown", () =>
+      handleOnMoveStart("mousemove")
+    );
+    desktopLabel.addEventListener("mouseup", () =>
+      handleOnMoveEnd("mousemove")
+    );
+    desktopLabel.addEventListener("touchstart", (event) =>
+      handleOnMoveStart("touchmove")
+    );
+    desktopLabel.addEventListener("touchend", () =>
+      handleOnMoveEnd("touchmove")
+    );
   }
 });
 
