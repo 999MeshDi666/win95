@@ -114,6 +114,7 @@ desktopWindowHeaders.forEach((desktopWindowHeader) => {
   const desktopWindow = document.querySelector(`#window_${dataTarget}`);
   let offsetX = 0;
   let offsetY = 0;
+  let desktopEventType = "";
 
   const handleMoveDesktopWindow = (event) => {
     moveDesktopItems(
@@ -121,41 +122,38 @@ desktopWindowHeaders.forEach((desktopWindowHeader) => {
       desktopWindow,
       handleMoveDesktopWindow,
       offsetX,
-      offsetY
-    );
-  };
-  const handleMoveMobileWindow = (event) => {
-    moveDesktopItems(
-      event,
-      desktopWindow,
-      handleMoveMobileWindow,
-      offsetX,
       offsetY,
-      "touchmove"
+      desktopEventType
     );
   };
 
-  desktopWindowHeader.addEventListener("mousedown", (event) => {
-    offsetX = event.clientX - desktopWindow.offsetLeft;
-    offsetY = event.clientY - desktopWindow.offsetTop;
-    desktopWindow.style.zIndex = 2;
-    document.addEventListener("mousemove", handleMoveDesktopWindow);
-  });
-  desktopWindowHeader.addEventListener("mouseup", () => {
-    document.removeEventListener("mousemove", handleMoveDesktopWindow);
-    desktopWindow.style.zIndex = 0;
-  });
-  desktopWindowHeader.addEventListener("touchstart", (event) => {
-    offsetX = event.touches[0].clientX - desktopWindow.offsetLeft;
-    offsetY = event.touches[0].clientY - desktopWindow.offsetTop;
+  const handleOnMoveStart = (event, eventType = "mousemove") => {
+    const { clientX, clientY } =
+      eventType === "mousemove" ? event : event.touches[0];
 
+    offsetX = clientX - desktopWindow.offsetLeft;
+    offsetY = clientY - desktopWindow.offsetTop;
+    desktopEventType = eventType;
     desktopWindow.style.zIndex = 2;
-    document.addEventListener("touchmove", handleMoveMobileWindow);
-  });
-  desktopWindowHeader.addEventListener("touchend", () => {
-    document.removeEventListener("touchmove", handleMoveMobileWindow);
+
+    document.addEventListener(eventType, handleMoveDesktopWindow);
+  };
+  const handleOnMoveEnd = (eventType = "mousemove") => {
+    document.removeEventListener(eventType, handleMoveDesktopWindow);
     desktopWindow.style.zIndex = 0;
-  });
+  };
+  desktopWindowHeader.addEventListener("mousedown", (event) =>
+    handleOnMoveStart(event)
+  );
+  desktopWindowHeader.addEventListener("mouseup", () =>
+    handleOnMoveEnd("mousemove")
+  );
+  desktopWindowHeader.addEventListener("touchstart", (event) =>
+    handleOnMoveStart(event, "touchmove")
+  );
+  desktopWindowHeader.addEventListener("touchend", () =>
+    handleOnMoveEnd("touchmove")
+  );
 });
 
 desktopWindowHeaderBtns.forEach((desktopWindowHeaderBtn) => {
