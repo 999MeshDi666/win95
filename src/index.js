@@ -206,9 +206,7 @@ const desktopFooterToolbarLang = document.querySelector(
 );
 desktopFooterToolbarLang.textContent = localStorage.getItem("lang");
 desktopFooterToolbarLang.addEventListener("click", () => {
-  desktopFooterToolbarLangPanel.classList.toggle(
-    "desktop_footer_panel_lang_hidden"
-  );
+  desktopFooterToolbarLangPanel.classList.toggle("desktop_footer_panel_hidden");
 });
 
 const lang_panel_titles = document.querySelectorAll(".lang_panel_title");
@@ -218,7 +216,7 @@ lang_panel_titles.forEach((lang_panel_title) => {
     localStorage.setItem("lang", dataLang);
     desktopFooterToolbarLang.textContent = dataLang;
     desktopFooterToolbarLangPanel.classList.remove(
-      "desktop_footer_panel_lang_hidden"
+      "desktop_footer_panel_hidden"
     );
   });
 });

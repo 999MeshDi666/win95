@@ -305,11 +305,12 @@ a:hover {
   border-width: 0.063rem;
 }
 .desktop_footer_toolbar_lang_panel {
-  right: 5rem;
-  bottom: 2.2rem;
+  flex-direction: column;
+  gap: 0.8rem;
+  right: 3.5rem;
+  bottom: 2.5rem;
 }
 .lang_panel_title {
-  margin-bottom: 0.5rem;
   font-size: 0.75rem;
   font-family: Arial, Helvetica, sans-serif;
 }
@@ -317,9 +318,7 @@ a:hover {
   background-color: var(--blue);
   color: white;
 }
-.desktop_footer_panel_lang_hidden {
-  display: block;
-}
+
 .desktop_footer_toolbar_clock {
   text-align: right;
 }
@@ -333,7 +332,7 @@ a:hover {
     width: 3.125rem;
   }
   .desktop_footer_toolbar_lang_panel {
-    right: 6.5rem;
+    right: 5.8rem;
   }
 }
 
