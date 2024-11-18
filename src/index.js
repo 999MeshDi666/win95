@@ -5,6 +5,8 @@ import "./assets/images/computer.png";
 import "./assets/images/disc.png";
 import { moveDesktopItems } from "./utils/moveItems";
 
+localStorage.setItem("lang", "RU");
+
 const desktopLabels = document.querySelectorAll(".desktop_label");
 const desktopWindowHeaderBtns = document.querySelectorAll(
   "#desktop_window_header_btns"
@@ -195,14 +197,40 @@ desktopFooterPanelContentLabels.forEach((desktopFooterPanelContentLabel) => {
   });
 });
 
+const desktopFooterToolbarLangPanel = document.querySelector(
+  ".desktop_footer_toolbar_lang_panel"
+);
+
+const desktopFooterToolbarLang = document.querySelector(
+  ".desktop_footer_toolbar_lang"
+);
+desktopFooterToolbarLang.textContent = localStorage.getItem("lang");
+desktopFooterToolbarLang.addEventListener("click", () => {
+  desktopFooterToolbarLangPanel.classList.toggle(
+    "desktop_footer_panel_lang_hidden"
+  );
+});
+
+const lang_panel_titles = document.querySelectorAll(".lang_panel_title");
+lang_panel_titles.forEach((lang_panel_title) => {
+  lang_panel_title.addEventListener("click", () => {
+    const dataLang = lang_panel_title.getAttribute("data-lang");
+    localStorage.setItem("lang", dataLang);
+    desktopFooterToolbarLang.textContent = dataLang;
+    desktopFooterToolbarLangPanel.classList.remove(
+      "desktop_footer_panel_lang_hidden"
+    );
+  });
+});
+
 //clock timer
 const clock = document.querySelector(".desktop_footer_toolbar_clock");
 
 function tick() {
-  const formattedDate = new Date().toLocaleDateString("en-US", {
+  const formattedDate = new Date().toLocaleDateString("ru-RU", {
     hour: "numeric",
     minute: "numeric",
-    hour12: true,
+    hour12: false,
   });
   const currentTime = formattedDate.substring(
     formattedDate.indexOf(",") + 1,
