@@ -1,4 +1,90 @@
 {
-  "EN": {},
-  "RU": {}
+  "EN": {
+    "resume": "resume.txt",
+    "computer": "My computer",
+    "notepad": "resume - Notepad",
+    "resume_windows_header": {
+      "greeting": "Hi, my name is Yegeubekov Madi!",
+      "intro": "This resume for someone who is interested in works. Let's keep in touch!"
+    },
+    "resume_windows_body": {
+      "objective1": "Developer with experience in creating and implementing user-oriented applications.",
+      "objective2": "I've worked on several projects using modern languages frameworks and libraries.",
+      "education": "EDUCATION:",
+      "education_texts": [
+        "Bachelor of Information System, Almaty Polytechnical College 2016-09 - 2020-05",
+        "Bachelor of Computer Science, Satbayev University 2020-09 - 2023-05"
+      ],
+      "skills": "SKILLS:",
+      "skill_list": [
+        "Technical Skills: HTML, CSS, JavaScript, TypeScript,  React, React Native, Dart, Flutter, Figma, Webpack, Vite, Github, Gitlab.",
+        "Technical Skills (Irrelevant): Svelte, Node js, Express js, Python, Django, C#, Oracle sql, PostgreSQL, MongoDB, Firebase.",
+        "Languages: Kazakh, Russian, English"
+      ],
+      "experience": "EXPERIENCE:",
+      "exp_company_name1": "Frontend developer | FINQ",
+      "exp_data1": "2024-04 - present | Almaty, Kazakhstan",
+      "exp_list1": [
+        "Development of an application for the provision of financial services to factoring organizations.",
+        "Testing the functionality of the application, writing unit, integration tests.",
+        "Development on the technology stack: javascript, typescript, react, material ui, berry template, vite, vitest, redux-toolkit, figma."
+      ],
+      "exp_company_name2": "Frontend developer | Blockchain & Big Data LAB",
+      "exp_data2": "2024-04 - 2024-11 | Almaty, Kazakhstan",
+      "exp_list2": [
+        "Development and support of enterprise applications for companies in various industries",
+        "Development on the technology stack: javascript, typescript, react, material ui, redux-toolkit, figma."
+      ],
+      "exp_company_name3": "Backend Developer Intern | Centersoft",
+      "exp_data3": "2020-07 - 2020-08 | Almaty, Kazakhstan",
+      "exp_list3": [
+        "Development of the server part of the platform to support the state sectors.",
+        "Development on the technology stack: python, django, postgre sql."
+      ]
+    }
+  },
+  "RU": {
+    "resume": "резюме.txt",
+    "computer": "Мой компьютер",
+    "notepad": "резюме - Блокнот",
+    "resume_windows_header": {
+      "greeting": "Привет, меня зовут Егеубеков Мади!",
+      "intro": "Это резюме для тех, кто интересуется работой. Давайте будем на связи!"
+    },
+    "resume_windows_body": {
+      "objective1": "Разработчик с опытом создания и внедрения ориентированных на пользователя приложений.",
+      "objective2": "Я работал над несколькими проектами, используя современные языки, фреймворки и библиотеки.",
+      "education": "ОБРАЗОВАНИЕ:",
+      "education_texts": [
+        "Бакалавр информационных систем, Алматинский политехнический колледж 2016-09 - 2020-05",
+        "Бакалавр компьютерных наук, Университет имени Сатпаева 2020-09 - 2023-05"
+      ],
+      "skills": "НАВЫКИ:",
+      "skill_list": [
+        "Технические навыки: HTML, CSS, JavaScript, TypeScript, React, React Native, Dart, Flutter, Figma, Webpack, Vite, Github, Gitlab.",
+        "Технические навыки (нерелевантные): Svelte, Node.js, Express.js, Python, Django, C#, Oracle SQL, PostgreSQL, MongoDB, Firebase.",
+        "Языки: Казахский, Русский, Английский"
+      ],
+      "experience": "ОПЫТ РАБОТЫ:",
+      "exp_company_name1": "Frontend разработчик | FINQ",
+      "exp_data1": "2024-04 - настоящее время | Алматы, Казахстан",
+      "exp_list1": [
+        "Разработка приложения для предоставления финансовых услуг факторинговым организациям.",
+        "Тестирование функциональности приложения, написание модульных и интеграционных тестов.",
+        "Разработка с использованием технологий: javascript, typescript, react, material ui, berry template, vite, vitest, redux-toolkit, figma."
+      ],
+      "exp_company_name2": "Frontend разработчик | Blockchain & Big Data LAB",
+      "exp_data2": "2024-04 - 2024-11 | Алматы, Казахстан",
+      "exp_list2": [
+        "Разработка и поддержка корпоративных приложений для компаний в различных отраслях.",
+        "Разработка с использованием технологий: javascript, typescript, react, material ui, redux-toolkit, figma."
+      ],
+      "exp_company_name3": "Стажёр бэкенд-разработчик | Centersoft",
+      "exp_data3": "2020-07 - 2020-08 | Алматы, Казахстан",
+      "exp_list3": [
+        "Разработка серверной части платформы для поддержки государственных секторов.",
+        "Разработка с использованием технологий: python, django, postgre sql."
+      ]
+    }
+  }
 }
