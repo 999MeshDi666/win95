@@ -194,6 +194,7 @@ desktopFooterPanelContentLabels.forEach((desktopFooterPanelContentLabel) => {
     handleOpenWindows(dataTarget);
   });
 });
+
 //clock timer
 const clock = document.querySelector(".desktop_footer_toolbar_clock");
 
