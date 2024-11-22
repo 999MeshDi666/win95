@@ -13,7 +13,7 @@ localStorage.setItem("lang", "RU");
 
 const desktopContent = document.querySelector(".desktop_content");
 createDesktopLabels(desktopContent);
-const desktopLabels = document.querySelectorAll(".desktop_label");
+
 const desktopWindowHeaderBtns = document.querySelectorAll(
   "#desktop_window_header_btns"
 );
@@ -21,15 +21,6 @@ const desktopFooterTabs = document.querySelectorAll(".desktop_footer_tab");
 const desktopWindowHeaders = document.querySelectorAll(
   ".desktop_window_header"
 );
-
-function handleOpenWindows(dataTarget) {
-  const desktopWindow = document.querySelector(`#window_${dataTarget}`);
-  desktopWindow.style.display = "block";
-
-  const footerTab = document.querySelector(`#footer_tab_${dataTarget}`);
-  footerTab.style.display = "flex";
-  footerTab.classList.remove("desktop_border_inset");
-}
 
 function handleWindowHeaderActions(event, desktopWindowHeaderBtn) {
   event.stopPropagation();
@@ -67,48 +58,6 @@ function handleWindowHeaderActions(event, desktopWindowHeaderBtn) {
       break;
   }
 }
-
-desktopLabels.forEach((desktopLabel) => {
-  const dataTarget = desktopLabel.getAttribute("data-target");
-  let desktopEventType = "";
-
-  if (dataTarget) {
-    const handleMoveDesktopLabel = (event) => {
-      moveDesktopItems(
-        event,
-        desktopLabel,
-        handleMoveDesktopLabel,
-        50,
-        25,
-        desktopEventType
-      );
-    };
-
-    const handleOnMoveStart = (eventType = "mousemove") => {
-      desktopEventType = eventType;
-      desktopLabel.style.zIndex = 2;
-
-      document.addEventListener(eventType, handleMoveDesktopLabel);
-    };
-    const handleOnMoveEnd = (eventType = "mousemove") => {
-      document.removeEventListener(eventType, handleMoveDesktopLabel);
-      desktopLabel.style.zIndex = 0;
-    };
-
-    desktopLabel.addEventListener("mousedown", () =>
-      handleOnMoveStart("mousemove")
-    );
-    desktopLabel.addEventListener("mouseup", () =>
-      handleOnMoveEnd("mousemove")
-    );
-    desktopLabel.addEventListener("touchstart", () =>
-      handleOnMoveStart("touchmove")
-    );
-    desktopLabel.addEventListener("touchend", () =>
-      handleOnMoveEnd("touchmove")
-    );
-  }
-});
 
 desktopWindowHeaders.forEach((desktopWindowHeader) => {
   const dataTarget = desktopWindowHeader.getAttribute("data-target");

@@ -1,5 +1,6 @@
 import "../assets/images/note.png";
 import "../assets/images/computer.png";
+import { moveDesktopItems } from "./moveItems";
 
 const labels = [
   {
@@ -40,15 +41,39 @@ export function createDesktopLabels(parent) {
 
   labels.forEach((label) => {
     let dblTap = false;
-    if (parent?.clientHeight < positionY) return;
+    let desktopEventType = "";
+
     const desktopLabel = createDesktopLabel(label, positionY);
     positionY += 100;
 
+    const handleMoveDesktopLabel = (event) => {
+      moveDesktopItems(
+        event,
+        desktopLabel,
+        handleMoveDesktopLabel,
+        50,
+        25,
+        desktopEventType
+      );
+    };
+
+    const handleOnMoveStart = (eventType = "mousemove") => {
+      desktopEventType = eventType;
+      desktopLabel.style.zIndex = 2;
+
+      document.addEventListener(eventType, handleMoveDesktopLabel);
+    };
+
+    const handleOnMoveEnd = (eventType = "mousemove") => {
+      document.removeEventListener(eventType, handleMoveDesktopLabel);
+      desktopLabel.style.zIndex = 0;
+    };
+
+    //open window events
     desktopLabel.addEventListener("dblclick", () => {
       createDesktopWindow(label, parent);
       createFooterTabs(label);
     });
-
     desktopLabel.addEventListener("touchend", () => {
       if (!dblTap) {
         dblTap = true;
@@ -58,6 +83,21 @@ export function createDesktopLabels(parent) {
       createDesktopWindow(label, parent);
       createFooterTabs(label);
     });
+
+    //move label events
+    desktopLabel.addEventListener("mousedown", () =>
+      handleOnMoveStart("mousemove")
+    );
+    desktopLabel.addEventListener("mouseup", () =>
+      handleOnMoveEnd("mousemove")
+    );
+    desktopLabel.addEventListener("touchstart", () =>
+      handleOnMoveStart("touchmove")
+    );
+    desktopLabel.addEventListener("touchend", () =>
+      handleOnMoveEnd("touchmove")
+    );
+
     parent?.appendChild(desktopLabel);
   });
 }
@@ -81,6 +121,7 @@ function createDesktopLabel(label, positionY) {
 
   return desktopLabel;
 }
+
 export function createDesktopWindow(label, parent) {
   const desktopWindow = document.createElement("article");
   desktopWindow.className = "desktop_window desktop_border_outset";
