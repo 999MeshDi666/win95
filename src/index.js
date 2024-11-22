@@ -3,114 +3,14 @@ import "./assets/images/note.png";
 import "./assets/images/folder.png";
 import "./assets/images/computer.png";
 import "./assets/images/disc.png";
-import {
-  createDesktopLabels,
-  createDesktopWindows,
-} from "./utils/createDesktopContent";
-import { moveDesktopItems } from "./utils/moveItems";
+import { createDesktopLabels } from "./utils/createDesktopContent";
 
 localStorage.setItem("lang", "RU");
 
 const desktopContent = document.querySelector(".desktop_content");
 createDesktopLabels(desktopContent);
 
-const desktopWindowHeaderBtns = document.querySelectorAll(
-  "#desktop_window_header_btns"
-);
 const desktopFooterTabs = document.querySelectorAll(".desktop_footer_tab");
-const desktopWindowHeaders = document.querySelectorAll(
-  ".desktop_window_header"
-);
-
-function handleWindowHeaderActions(event, desktopWindowHeaderBtn) {
-  event.stopPropagation();
-  const button = event.target.closest("button");
-  if (!button || !desktopWindowHeaderBtn.contains(button)) return;
-  const dataAction = button.getAttribute("data-action");
-  const dataTarget = desktopWindowHeaderBtn.getAttribute("data-target");
-
-  const desktopWindow = document.querySelector(`#window_${dataTarget}`);
-  const windowBodyContent = document.querySelector(
-    `#window_body_${dataTarget}`
-  );
-  const footerTab = document.querySelector(`#footer_tab_${dataTarget}`);
-
-  switch (dataAction) {
-    case "collapse":
-      desktopWindow.style.display = "none";
-      footerTab.classList.toggle("desktop_border_inset");
-      break;
-    case "resize":
-      if (desktopWindow.classList.contains("desktop_window_resized")) {
-        desktopWindow.style.top = 0;
-        desktopWindow.style.left = 0;
-      }
-      desktopWindow.classList.toggle("desktop_window_resized");
-      windowBodyContent.classList.toggle("window_body_content_resized");
-      break;
-    default:
-      desktopWindow.style.top = 0;
-      desktopWindow.style.left = 0;
-      desktopWindow.style.display = "none";
-      footerTab.style.display = "none";
-      desktopWindow.classList.remove("desktop_window_resized");
-      windowBodyContent.classList.remove("window_body_content_resized");
-      break;
-  }
-}
-
-desktopWindowHeaders.forEach((desktopWindowHeader) => {
-  const dataTarget = desktopWindowHeader.getAttribute("data-target");
-  const desktopWindow = document.querySelector(`#window_${dataTarget}`);
-  let offsetX = 0;
-  let offsetY = 0;
-  let desktopEventType = "";
-
-  const handleMoveDesktopWindow = (event) => {
-    moveDesktopItems(
-      event,
-      desktopWindow,
-      handleMoveDesktopWindow,
-      offsetX,
-      offsetY,
-      desktopEventType
-    );
-  };
-
-  const handleOnMoveStart = (event, eventType = "mousemove") => {
-    const { clientX, clientY } =
-      eventType === "mousemove" ? event : event.touches[0];
-
-    offsetX = clientX - desktopWindow.offsetLeft;
-    offsetY = clientY - desktopWindow.offsetTop;
-    desktopEventType = eventType;
-    desktopWindow.style.zIndex = 2;
-
-    document.addEventListener(eventType, handleMoveDesktopWindow);
-  };
-  const handleOnMoveEnd = (eventType = "mousemove") => {
-    document.removeEventListener(eventType, handleMoveDesktopWindow);
-    desktopWindow.style.zIndex = 0;
-  };
-  desktopWindowHeader.addEventListener("mousedown", (event) =>
-    handleOnMoveStart(event)
-  );
-  desktopWindowHeader.addEventListener("mouseup", () =>
-    handleOnMoveEnd("mousemove")
-  );
-  desktopWindowHeader.addEventListener("touchstart", (event) =>
-    handleOnMoveStart(event, "touchmove")
-  );
-  desktopWindowHeader.addEventListener("touchend", () =>
-    handleOnMoveEnd("touchmove")
-  );
-});
-
-desktopWindowHeaderBtns.forEach((desktopWindowHeaderBtn) => {
-  desktopWindowHeaderBtn.addEventListener("click", (event) =>
-    handleWindowHeaderActions(event, desktopWindowHeaderBtn)
-  );
-});
 
 desktopFooterTabs.forEach((tab) => {
   const dataTarget = tab.getAttribute("data-target");

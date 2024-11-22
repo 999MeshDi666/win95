@@ -135,9 +135,52 @@ export function createDesktopWindow(label, parent) {
 
 function createWindowsHeader(label, parent) {
   //window header
+  let offsetX = 0;
+  let offsetY = 0;
+  let desktopEventType = "";
   const desktopWindowHeader = document.createElement("header");
   desktopWindowHeader.className = "desktop_window_header";
   desktopWindowHeader.setAttribute("data-target", label.name);
+
+  const handleMoveDesktopWindow = (event) => {
+    moveDesktopItems(
+      event,
+      parent,
+      handleMoveDesktopWindow,
+      offsetX,
+      offsetY,
+      desktopEventType
+    );
+  };
+  const handleOnMoveStart = (event, eventType = "mousemove") => {
+    const { clientX, clientY } =
+      eventType === "mousemove" ? event : event.touches[0];
+
+    offsetX = clientX - parent.offsetLeft;
+    offsetY = clientY - parent.offsetTop;
+    desktopEventType = eventType;
+    parent.style.zIndex = 2;
+
+    document.addEventListener(eventType, handleMoveDesktopWindow);
+  };
+  const handleOnMoveEnd = (eventType = "mousemove") => {
+    document.removeEventListener(eventType, handleMoveDesktopWindow);
+    parent.style.zIndex = 0;
+  };
+
+  //move window events
+  desktopWindowHeader.addEventListener("mousedown", (event) =>
+    handleOnMoveStart(event)
+  );
+  desktopWindowHeader.addEventListener("mouseup", () =>
+    handleOnMoveEnd("mousemove")
+  );
+  desktopWindowHeader.addEventListener("touchstart", (event) =>
+    handleOnMoveStart(event, "touchmove")
+  );
+  desktopWindowHeader.addEventListener("touchend", () =>
+    handleOnMoveEnd("touchmove")
+  );
 
   //window header path
   const windowHeaderPath = document.createElement("div");
@@ -169,6 +212,31 @@ function createWindowsHeader(label, parent) {
       BtnCloseIcon.ariaLabel = action;
       btn.appendChild(BtnCloseIcon);
     }
+    btn.addEventListener("click", () => {
+      const footerTab = document.querySelector(`#footer_tab_${label.name}`);
+      const windowBodyContent = document.querySelector(
+        `window_body_${label.name}`
+      );
+      switch (action) {
+        case "collapse":
+          parent.style.display = "none";
+          footerTab?.classList.toggle("desktop_border_inset");
+          break;
+        case "resize":
+          const isResized = parent.classList.contains("desktop_window_resized");
+          if (isResized) {
+            parent.style.top = 0;
+            parent.style.left = 0;
+          }
+          parent.classList.toggle("desktop_window_resized");
+          windowBodyContent?.classList.toggle("window_body_content_resized");
+          break;
+        default:
+          parent.remove();
+          footerTab?.remove();
+          break;
+      }
+    });
     windowHeaderBtns.appendChild(btn);
   });
 
@@ -199,7 +267,7 @@ function createWindowsBody(label, parent) {
   //window body content
   const windowBodyContent = document.createElement("div");
   windowBodyContent.className = "window_body_content desktop_border_inset";
-  windowBodyContent.id = `window_body_${label.title}`;
+  windowBodyContent.id = `window_body_${label.name}`;
   desktopWindowBody.appendChild(windowBodyContent);
 
   parent.appendChild(desktopWindowBody);
