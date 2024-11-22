@@ -85,6 +85,32 @@ a:hover {
   -webkit-user-select: none;
   overflow: hidden;
 }
+.desktop_old_monitor_effect {
+  background: linear-gradient(
+    to bottom,
+    #00818100,
+    #00818100,
+    #0060605c,
+    #017878
+  );
+  background-size: cover;
+  background-size: 100% 1px;
+  animation: scanlines infinite 100s linear;
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  z-index: 9;
+  pointer-events: none;
+}
+
+@keyframes scanlines {
+  from {
+    background-position: 0 -100px;
+  }
+  to {
+    background-position: 0 0px;
+  }
+}
 
 /*desktop windows */
 .desktop_window {
@@ -96,7 +122,7 @@ a:hover {
   width: 100%;
   height: 100vh;
   overflow: hidden;
-  display: none;
+  /* display: none; */
 }
 .desktop_window_resized {
   width: 85%;
@@ -209,7 +235,6 @@ a:hover {
   padding: 0.313rem;
   background-color: var(--gray);
   position: fixed;
-  position: fixed;
   bottom: 2.5rem;
 }
 .desktop_footer_win_panel {
@@ -286,7 +311,7 @@ a:hover {
   -webkit-user-select: none;
   cursor: pointer;
   gap: 0.313rem;
-  display: none;
+  /* display: none; */
 }
 
 .desktop_footer_tab_img {
