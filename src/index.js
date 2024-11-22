@@ -10,19 +10,6 @@ localStorage.setItem("lang", "RU");
 const desktopContent = document.querySelector(".desktop_content");
 createDesktopLabels(desktopContent);
 
-const desktopFooterTabs = document.querySelectorAll(".desktop_footer_tab");
-
-desktopFooterTabs.forEach((tab) => {
-  const dataTarget = tab.getAttribute("data-target");
-  const desktopWindow = document.querySelector(`#window_${dataTarget}`);
-
-  tab.addEventListener("click", () => {
-    tab.classList.toggle("desktop_border_inset");
-    const shouldCollapseWindow = tab.classList.contains("desktop_border_inset");
-    desktopWindow.style.display = shouldCollapseWindow ? "none" : "block";
-  });
-});
-
 const desktopFooterBtn = document.querySelector(".desktop_footer_btn");
 const desktopFooterPanel = document.querySelector(".desktop_footer_panel");
 desktopFooterBtn.addEventListener("click", () => {

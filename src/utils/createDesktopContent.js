@@ -46,6 +46,15 @@ export function createDesktopLabels(parent) {
     const desktopLabel = createDesktopLabel(label, positionY);
     positionY += 100;
 
+    const handleOpenWindows = () => {
+      const footerTab = document.querySelector(`#footer_tab_${label.name}`);
+      if (footerTab) {
+        collapseWindow(footerTab, label);
+        return;
+      }
+      createDesktopWindow(label, parent);
+      createFooterTabs(label);
+    };
     const handleMoveDesktopLabel = (event) => {
       moveDesktopItems(
         event,
@@ -71,8 +80,7 @@ export function createDesktopLabels(parent) {
 
     //open window events
     desktopLabel.addEventListener("dblclick", () => {
-      createDesktopWindow(label, parent);
-      createFooterTabs(label);
+      handleOpenWindows();
     });
     desktopLabel.addEventListener("touchend", () => {
       if (!dblTap) {
@@ -80,8 +88,7 @@ export function createDesktopLabels(parent) {
         setTimeout(() => (dblTap = false), 500);
         return false;
       }
-      createDesktopWindow(label, parent);
-      createFooterTabs(label);
+      handleOpenWindows();
     });
 
     //move label events
@@ -201,6 +208,7 @@ function createWindowsHeader(label, parent) {
   windowHeaderBtns.id = "desktop_window_header_btns";
   windowHeaderBtns.setAttribute("data-target", label.name);
 
+  //window header btn events
   headerBtnActions.forEach((action) => {
     const btn = document.createElement("button");
     btn.className = "desktop_window_header_btn desktop_button";
@@ -281,6 +289,11 @@ export function createFooterTabs(label) {
   footerTab.id = `footer_tab_${label.name}`;
   footerTab.setAttribute("data-target", label.name);
 
+  //footer tab collapse window event
+  footerTab.addEventListener("click", () => {
+    collapseWindow(footerTab, label);
+  });
+
   const footerTabImage = document.createElement("img");
   footerTabImage.src = label.src;
   footerTabImage.alt = `tab_${label.name}`;
@@ -293,4 +306,13 @@ export function createFooterTabs(label) {
   footerTab.appendChild(footerTabTitle);
 
   desktopFooterTabs.appendChild(footerTab);
+}
+
+function collapseWindow(footerTab, label) {
+  const desktopWindow = document.querySelector(`#window_${label.name}`);
+  footerTab.classList.toggle("desktop_border_inset");
+  const shouldCollapseWindow = footerTab.classList.contains(
+    "desktop_border_inset"
+  );
+  desktopWindow.style.display = shouldCollapseWindow ? "none" : "block";
 }
