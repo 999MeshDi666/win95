@@ -46,15 +46,6 @@ export function createDesktopLabels(parent) {
     const desktopLabel = createDesktopLabel(label, positionY);
     positionY += 100;
 
-    const handleOpenWindows = () => {
-      const footerTab = document.querySelector(`#footer_tab_${label.name}`);
-      if (footerTab) {
-        collapseWindow(footerTab, label);
-        return;
-      }
-      createDesktopWindow(label, parent);
-      createFooterTabs(label);
-    };
     const handleMoveDesktopLabel = (event) => {
       moveDesktopItems(
         event,
@@ -80,7 +71,7 @@ export function createDesktopLabels(parent) {
 
     //open window events
     desktopLabel.addEventListener("dblclick", () => {
-      handleOpenWindows();
+      handleOpenWindows(label, parent);
     });
     desktopLabel.addEventListener("touchend", () => {
       if (!dblTap) {
@@ -88,7 +79,7 @@ export function createDesktopLabels(parent) {
         setTimeout(() => (dblTap = false), 500);
         return false;
       }
-      handleOpenWindows();
+      handleOpenWindows(label, parent);
     });
 
     //move label events
@@ -107,6 +98,15 @@ export function createDesktopLabels(parent) {
 
     parent?.appendChild(desktopLabel);
   });
+}
+function handleOpenWindows(label, parent) {
+  const footerTab = document.querySelector(`#footer_tab_${label.name}`);
+  if (footerTab) {
+    collapseWindow(footerTab, label);
+    return;
+  }
+  createDesktopWindow(label, parent);
+  createFooterTabs(label);
 }
 
 function createDesktopLabel(label, positionY) {
@@ -129,7 +129,7 @@ function createDesktopLabel(label, positionY) {
   return desktopLabel;
 }
 
-export function createDesktopWindow(label, parent) {
+function createDesktopWindow(label, parent) {
   const desktopWindow = document.createElement("article");
   desktopWindow.className = "desktop_window desktop_border_outset";
   desktopWindow.id = `window_${label.name}`;
@@ -281,7 +281,7 @@ function createWindowsBody(label, parent) {
   parent.appendChild(desktopWindowBody);
 }
 
-export function createFooterTabs(label) {
+function createFooterTabs(label) {
   const desktopFooterTabs = document.querySelector(".desktop_footer_tabs");
 
   const footerTab = document.createElement("div");
@@ -315,4 +315,31 @@ function collapseWindow(footerTab, label) {
     "desktop_border_inset"
   );
   desktopWindow.style.display = shouldCollapseWindow ? "none" : "block";
+}
+
+export function createWinPanelLabels(desktopContent) {
+  const winPanelContent = document.querySelector(
+    ".desktop_footer_panel_content"
+  );
+
+  labels.forEach((label) => {
+    const panelLabel = document.createElement("div");
+    panelLabel.className = "desktop_footer_panel_content_label";
+    panelLabel.setAttribute("data-target", label.name);
+
+    const panelLabelIcon = document.createElement("img");
+    panelLabelIcon.src = label.src;
+    panelLabelIcon.alt = label.name;
+    panelLabel.appendChild(panelLabelIcon);
+
+    const panelLabelTitle = document.createElement("p");
+    panelLabelTitle.textContent = label.title;
+    panelLabel.appendChild(panelLabelTitle);
+
+    panelLabel.addEventListener("click", () => {
+      handleOpenWindows(label, desktopContent);
+    });
+
+    winPanelContent.appendChild(panelLabel);
+  });
 }

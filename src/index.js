@@ -3,27 +3,21 @@ import "./assets/images/note.png";
 import "./assets/images/folder.png";
 import "./assets/images/computer.png";
 import "./assets/images/disc.png";
-import { createDesktopLabels } from "./utils/createDesktopContent";
+import {
+  createDesktopLabels,
+  createWinPanelLabels,
+} from "./utils/createDesktopContent";
 
 localStorage.setItem("lang", "RU");
 
 const desktopContent = document.querySelector(".desktop_content");
 createDesktopLabels(desktopContent);
+createWinPanelLabels(desktopContent);
 
 const desktopFooterBtn = document.querySelector(".desktop_footer_btn");
 const desktopFooterPanel = document.querySelector(".desktop_footer_panel");
 desktopFooterBtn.addEventListener("click", () => {
   desktopFooterPanel.classList.toggle("desktop_footer_panel_hidden");
-});
-
-const desktopFooterPanelContentLabels = document.querySelectorAll(
-  ".desktop_footer_panel_content_label"
-);
-desktopFooterPanelContentLabels.forEach((desktopFooterPanelContentLabel) => {
-  const dataTarget = desktopFooterPanelContentLabel.getAttribute("data-target");
-  desktopFooterPanelContentLabel.addEventListener("click", () => {
-    handleOpenWindows(dataTarget);
-  });
 });
 
 const desktopFooterToolbarLangPanel = document.querySelector(
