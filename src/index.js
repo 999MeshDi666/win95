@@ -3,10 +3,13 @@ import "./assets/images/note.png";
 import "./assets/images/folder.png";
 import "./assets/images/computer.png";
 import "./assets/images/disc.png";
+import { createDesktopLabels } from "./utils/createDesktopContent";
 import { moveDesktopItems } from "./utils/moveItems";
 
 localStorage.setItem("lang", "RU");
 
+const desktopContent = document.querySelector(".desktop_content");
+createDesktopLabels(desktopContent);
 const desktopLabels = document.querySelectorAll(".desktop_label");
 const desktopWindowHeaderBtns = document.querySelectorAll(
   "#desktop_window_header_btns"

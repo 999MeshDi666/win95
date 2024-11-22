@@ -1,3 +1,20 @@
+import "../assets/images/note.png";
+import "../assets/images/computer.png";
+
+const labels = [
+  {
+    name: "resume",
+    title: "resume.txt",
+    path: "resume - Notepad",
+    src: "../assets/images/note.png",
+  },
+  {
+    name: "computer",
+    title: "My computer",
+    path: "My computer",
+    src: "../assets/images/computer.png",
+  },
+];
 const networkLinks = [
   {
     title: "Github",
@@ -18,7 +35,7 @@ const networkLinks = [
 ];
 const headerBtnActions = ["collapse", "resize", "close"];
 
-export function createDesktopLabels(labels, parent) {
+export function createDesktopLabels(parent) {
   let positionY = 20;
 
   labels.forEach((label) => {
@@ -33,7 +50,7 @@ export function createDesktopLabels(labels, parent) {
     positionY += 100;
 
     const desktopLabelIcon = document.createElement("img");
-    desktopLabelIcon.src = label.image;
+    desktopLabelIcon.src = label.src;
     desktopLabelIcon.alt = label.name;
     desktopLabelIcon.draggable = false;
 
