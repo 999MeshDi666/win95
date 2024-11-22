@@ -39,32 +39,49 @@ export function createDesktopLabels(parent) {
   let positionY = 20;
 
   labels.forEach((label) => {
+    let dblTap = false;
     if (parent?.clientHeight < positionY) return;
-
-    const desktopLabel = document.createElement("div");
-    desktopLabel.className = "desktop_label";
-    desktopLabel.id = label.name;
-    desktopLabel.setAttribute("data-target", label.name);
-
-    desktopLabel.style.top = `${positionY}px`;
+    const desktopLabel = createDesktopLabel(label, positionY);
     positionY += 100;
 
-    const desktopLabelIcon = document.createElement("img");
-    desktopLabelIcon.src = label.src;
-    desktopLabelIcon.alt = label.name;
-    desktopLabelIcon.draggable = false;
+    desktopLabel.addEventListener("dblclick", () => {
+      createDesktopWindow(label, parent);
+      createFooterTabs(label);
+    });
 
-    const desktopLabelTitle = document.createElement("p");
-    desktopLabelTitle.textContent = label.title;
-
-    desktopLabel.appendChild(desktopLabelIcon);
-    desktopLabel.appendChild(desktopLabelTitle);
-
+    desktopLabel.addEventListener("touchend", () => {
+      if (!dblTap) {
+        dblTap = true;
+        setTimeout(() => (dblTap = false), 500);
+        return false;
+      }
+      createDesktopWindow(label, parent);
+      createFooterTabs(label);
+    });
     parent?.appendChild(desktopLabel);
   });
 }
 
-export function createDesktopWindows(label, parent) {
+function createDesktopLabel(label, positionY) {
+  const desktopLabel = document.createElement("div");
+  desktopLabel.className = "desktop_label";
+  desktopLabel.id = label.name;
+  desktopLabel.setAttribute("data-target", label.name);
+  desktopLabel.style.top = `${positionY}px`;
+
+  const desktopLabelIcon = document.createElement("img");
+  desktopLabelIcon.src = label.src;
+  desktopLabelIcon.alt = label.name;
+  desktopLabelIcon.draggable = false;
+  desktopLabel.appendChild(desktopLabelIcon);
+
+  const desktopLabelTitle = document.createElement("p");
+  desktopLabelTitle.textContent = label.title;
+  desktopLabel.appendChild(desktopLabelTitle);
+
+  return desktopLabel;
+}
+export function createDesktopWindow(label, parent) {
   const desktopWindow = document.createElement("article");
   desktopWindow.className = "desktop_window desktop_border_outset";
   desktopWindow.id = `window_${label.name}`;
@@ -97,6 +114,8 @@ function createWindowsHeader(label, parent) {
 
   //window header btns
   const windowHeaderBtns = document.createElement("div");
+  windowHeaderBtns.id = "desktop_window_header_btns";
+  windowHeaderBtns.setAttribute("data-target", label.name);
 
   headerBtnActions.forEach((action) => {
     const btn = document.createElement("button");

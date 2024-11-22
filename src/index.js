@@ -3,7 +3,10 @@ import "./assets/images/note.png";
 import "./assets/images/folder.png";
 import "./assets/images/computer.png";
 import "./assets/images/disc.png";
-import { createDesktopLabels } from "./utils/createDesktopContent";
+import {
+  createDesktopLabels,
+  createDesktopWindows,
+} from "./utils/createDesktopContent";
 import { moveDesktopItems } from "./utils/moveItems";
 
 localStorage.setItem("lang", "RU");
@@ -22,6 +25,7 @@ const desktopWindowHeaders = document.querySelectorAll(
 function handleOpenWindows(dataTarget) {
   const desktopWindow = document.querySelector(`#window_${dataTarget}`);
   desktopWindow.style.display = "block";
+
   const footerTab = document.querySelector(`#footer_tab_${dataTarget}`);
   footerTab.style.display = "flex";
   footerTab.classList.remove("desktop_border_inset");
@@ -65,7 +69,6 @@ function handleWindowHeaderActions(event, desktopWindowHeaderBtn) {
 }
 
 desktopLabels.forEach((desktopLabel) => {
-  let dblTap = false;
   const dataTarget = desktopLabel.getAttribute("data-target");
   let desktopEventType = "";
 
@@ -91,19 +94,6 @@ desktopLabels.forEach((desktopLabel) => {
       document.removeEventListener(eventType, handleMoveDesktopLabel);
       desktopLabel.style.zIndex = 0;
     };
-
-    desktopLabel.addEventListener("dblclick", () =>
-      handleOpenWindows(dataTarget)
-    );
-
-    desktopLabel.addEventListener("touchend", () => {
-      if (!dblTap) {
-        dblTap = true;
-        setTimeout(() => (dblTap = false), 500);
-        return false;
-      }
-      handleOpenWindows(dataTarget);
-    });
 
     desktopLabel.addEventListener("mousedown", () =>
       handleOnMoveStart("mousemove")
