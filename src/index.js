@@ -108,7 +108,7 @@ desktopLabels.forEach((desktopLabel) => {
     desktopLabel.addEventListener("mouseup", () =>
       handleOnMoveEnd("mousemove")
     );
-    desktopLabel.addEventListener("touchstart", (event) =>
+    desktopLabel.addEventListener("touchstart", () =>
       handleOnMoveStart("touchmove")
     );
     desktopLabel.addEventListener("touchend", () =>
