@@ -1,6 +1,7 @@
 import "../assets/images/note.png";
 import "../assets/images/computer.png";
 import { moveDesktopItems } from "./moveItems";
+import { createResumeContent } from "./windowsContent";
 
 const labels = [
   {
@@ -8,12 +9,14 @@ const labels = [
     title: "resume.txt",
     path: "resume - Notepad",
     src: "../assets/images/note.png",
+    content: createResumeContent,
   },
   {
     name: "computer",
     title: "My computer",
     path: "My computer",
     src: "../assets/images/computer.png",
+    content: () => document.createElement("div"),
   },
 ];
 const networkLinks = [
@@ -267,8 +270,8 @@ function createWindowsBody(label, parent) {
   const windowBodyContent = document.createElement("div");
   windowBodyContent.className = "window_body_content desktop_border_inset";
   windowBodyContent.id = `window_body_${label.name}`;
-  const resumeContent = createResumeContent();
-  windowBodyContent.appendChild(resumeContent);
+
+  windowBodyContent.appendChild(label.content());
   desktopWindowBody.appendChild(windowBodyContent);
 
   parent.appendChild(desktopWindowBody);
@@ -345,78 +348,4 @@ function handleCollapseWindow(footerTab, label) {
     "desktop_border_inset"
   );
   desktopWindow.style.display = shouldCollapseWindow ? "none" : "block";
-}
-
-function createResumeContent() {
-  const resumeContent = document.createElement("div");
-  resumeContent.className = "resume_content";
-
-  createResumeContentHeader(resumeContent);
-  createResumeContentBody(resumeContent);
-  return resumeContent;
-}
-
-function createResumeContentHeader(parent) {
-  //resume content header
-  const resumeContentHeader = document.createElement("div");
-  resumeContentHeader.className = "resume_content_header";
-  const contentHeaderDivider1 = document.createElement("p");
-  contentHeaderDivider1.textContent =
-    "----------------------------------------------------------------------";
-  resumeContentHeader.appendChild(contentHeaderDivider1);
-
-  const contentHeaderTitle = document.createElement("h1");
-  contentHeaderTitle.textContent = "Hi, my name is Yegeubekov Madi!";
-  resumeContentHeader.appendChild(contentHeaderTitle);
-
-  const contentHeaderSubtitle = document.createElement("h2");
-  contentHeaderSubtitle.textContent =
-    "This resume for someone who is interested in works. Let's keep in touch!";
-  resumeContentHeader.appendChild(contentHeaderSubtitle);
-
-  const contentHeaderDivider2 = document.createElement("p");
-  contentHeaderDivider2.textContent =
-    "----------------------------------------------------------------------";
-  resumeContentHeader.appendChild(contentHeaderDivider2);
-
-  parent.appendChild(resumeContentHeader);
-}
-
-function createResumeContentBody(parent) {
-  //resume content body
-  const resumeContentBody = document.createElement("div");
-
-  const contentBodyObj = document.createElement("p");
-  contentBodyObj.textContent =
-    "Developer with experience in creating and implementing user-oriented applications.";
-  resumeContentBody.appendChild(contentBodyObj);
-
-  //education section
-  const educationSection = document.createElement("div");
-  const educationSectionDivider1 = document.createElement("p");
-  educationSectionDivider1.textContent = "----------";
-  educationSection.appendChild(educationSectionDivider1);
-
-  const educationSectionTitle = document.createElement("h3");
-  educationSectionTitle.textContent = "EDUCATION:";
-  educationSection.appendChild(educationSectionTitle);
-
-  const educationSectionDivider2 = document.createElement("p");
-  educationSectionDivider2.textContent = "----------";
-  educationSection.appendChild(educationSectionDivider2);
-
-  const educationSectionList = document.createElement("ul");
-  [
-    "Bachelor of Information System, Almaty Polytechnical College 2016-09 - 2020-05",
-    "Bachelor of Computer Science, Satbayev University 2020-09- 2023-05",
-  ].forEach((text) => {
-    const bulletPoint = document.createElement("li");
-    bulletPoint.textContent = text;
-    educationSectionList.appendChild(bulletPoint);
-  });
-  educationSection.appendChild(educationSectionList);
-
-  resumeContentBody.appendChild(educationSection);
-
-  parent.appendChild(resumeContentBody);
 }
