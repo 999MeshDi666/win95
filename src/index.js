@@ -6,7 +6,7 @@ import "./assets/images/disc.png";
 import {
   createDesktopLabels,
   createWinPanelLabels,
-} from "./utils/createDesktopContent";
+} from "./utils/desktopContent";
 
 localStorage.setItem("lang", "RU");
 

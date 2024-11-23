@@ -99,15 +99,6 @@ export function createDesktopLabels(parent) {
     parent?.appendChild(desktopLabel);
   });
 }
-function handleOpenWindows(label, parent) {
-  const footerTab = document.querySelector(`#footer_tab_${label.name}`);
-  if (footerTab) {
-    collapseWindow(footerTab, label);
-    return;
-  }
-  createDesktopWindow(label, parent);
-  createFooterTabs(label);
-}
 
 function createDesktopLabel(label, positionY) {
   const desktopLabel = document.createElement("div");
@@ -276,6 +267,8 @@ function createWindowsBody(label, parent) {
   const windowBodyContent = document.createElement("div");
   windowBodyContent.className = "window_body_content desktop_border_inset";
   windowBodyContent.id = `window_body_${label.name}`;
+  const resumeContent = createResumeContent();
+  windowBodyContent.appendChild(resumeContent);
   desktopWindowBody.appendChild(windowBodyContent);
 
   parent.appendChild(desktopWindowBody);
@@ -291,7 +284,7 @@ function createFooterTabs(label) {
 
   //footer tab collapse window event
   footerTab.addEventListener("click", () => {
-    collapseWindow(footerTab, label);
+    handleCollapseWindow(footerTab, label);
   });
 
   const footerTabImage = document.createElement("img");
@@ -306,15 +299,6 @@ function createFooterTabs(label) {
   footerTab.appendChild(footerTabTitle);
 
   desktopFooterTabs.appendChild(footerTab);
-}
-
-function collapseWindow(footerTab, label) {
-  const desktopWindow = document.querySelector(`#window_${label.name}`);
-  footerTab.classList.toggle("desktop_border_inset");
-  const shouldCollapseWindow = footerTab.classList.contains(
-    "desktop_border_inset"
-  );
-  desktopWindow.style.display = shouldCollapseWindow ? "none" : "block";
 }
 
 export function createWinPanelLabels(desktopContent) {
@@ -342,4 +326,97 @@ export function createWinPanelLabels(desktopContent) {
 
     winPanelContent.appendChild(panelLabel);
   });
+}
+
+function handleOpenWindows(label, parent) {
+  const footerTab = document.querySelector(`#footer_tab_${label.name}`);
+  if (footerTab) {
+    handleCollapseWindow(footerTab, label);
+    return;
+  }
+  createDesktopWindow(label, parent);
+  createFooterTabs(label);
+}
+
+function handleCollapseWindow(footerTab, label) {
+  const desktopWindow = document.querySelector(`#window_${label.name}`);
+  footerTab.classList.toggle("desktop_border_inset");
+  const shouldCollapseWindow = footerTab.classList.contains(
+    "desktop_border_inset"
+  );
+  desktopWindow.style.display = shouldCollapseWindow ? "none" : "block";
+}
+
+function createResumeContent() {
+  const resumeContent = document.createElement("div");
+  resumeContent.className = "resume_content";
+
+  createResumeContentHeader(resumeContent);
+  createResumeContentBody(resumeContent);
+  return resumeContent;
+}
+
+function createResumeContentHeader(parent) {
+  //resume content header
+  const resumeContentHeader = document.createElement("div");
+  resumeContentHeader.className = "resume_content_header";
+  const contentHeaderDivider1 = document.createElement("p");
+  contentHeaderDivider1.textContent =
+    "----------------------------------------------------------------------";
+  resumeContentHeader.appendChild(contentHeaderDivider1);
+
+  const contentHeaderTitle = document.createElement("h1");
+  contentHeaderTitle.textContent = "Hi, my name is Yegeubekov Madi!";
+  resumeContentHeader.appendChild(contentHeaderTitle);
+
+  const contentHeaderSubtitle = document.createElement("h2");
+  contentHeaderSubtitle.textContent =
+    "This resume for someone who is interested in works. Let's keep in touch!";
+  resumeContentHeader.appendChild(contentHeaderSubtitle);
+
+  const contentHeaderDivider2 = document.createElement("p");
+  contentHeaderDivider2.textContent =
+    "----------------------------------------------------------------------";
+  resumeContentHeader.appendChild(contentHeaderDivider2);
+
+  parent.appendChild(resumeContentHeader);
+}
+
+function createResumeContentBody(parent) {
+  //resume content body
+  const resumeContentBody = document.createElement("div");
+
+  const contentBodyObj = document.createElement("p");
+  contentBodyObj.textContent =
+    "Developer with experience in creating and implementing user-oriented applications.";
+  resumeContentBody.appendChild(contentBodyObj);
+
+  //education section
+  const educationSection = document.createElement("div");
+  const educationSectionDivider1 = document.createElement("p");
+  educationSectionDivider1.textContent = "----------";
+  educationSection.appendChild(educationSectionDivider1);
+
+  const educationSectionTitle = document.createElement("h3");
+  educationSectionTitle.textContent = "EDUCATION:";
+  educationSection.appendChild(educationSectionTitle);
+
+  const educationSectionDivider2 = document.createElement("p");
+  educationSectionDivider2.textContent = "----------";
+  educationSection.appendChild(educationSectionDivider2);
+
+  const educationSectionList = document.createElement("ul");
+  [
+    "Bachelor of Information System, Almaty Polytechnical College 2016-09 - 2020-05",
+    "Bachelor of Computer Science, Satbayev University 2020-09- 2023-05",
+  ].forEach((text) => {
+    const bulletPoint = document.createElement("li");
+    bulletPoint.textContent = text;
+    educationSectionList.appendChild(bulletPoint);
+  });
+  educationSection.appendChild(educationSectionList);
+
+  resumeContentBody.appendChild(educationSection);
+
+  parent.appendChild(resumeContentBody);
 }
