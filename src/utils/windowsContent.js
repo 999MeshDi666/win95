@@ -1,3 +1,6 @@
+import lang from "./lang.json";
+const locale = lang[localStorage.getItem("lang")];
+
 //resume content
 export function createResumeContent() {
   const resumeContent = document.createElement("div");
@@ -9,6 +12,7 @@ export function createResumeContent() {
 }
 
 function createResumeContentHeader(parent) {
+  const headerLocales = locale.resume_windows_header;
   //resume content header
   const resumeContentHeader = document.createElement("div");
   resumeContentHeader.className = "resume_content_header";
@@ -18,12 +22,11 @@ function createResumeContentHeader(parent) {
   resumeContentHeader.appendChild(contentHeaderDivider1);
 
   const contentHeaderTitle = document.createElement("h1");
-  contentHeaderTitle.textContent = "Hi, my name is Yegeubekov Madi!";
+  contentHeaderTitle.textContent = headerLocales.greeting;
   resumeContentHeader.appendChild(contentHeaderTitle);
 
   const contentHeaderSubtitle = document.createElement("h2");
-  contentHeaderSubtitle.textContent =
-    "This resume for someone who is interested in works. Let's keep in touch!";
+  contentHeaderSubtitle.textContent = headerLocales.intro;
   resumeContentHeader.appendChild(contentHeaderSubtitle);
 
   const contentHeaderDivider2 = document.createElement("p");
@@ -35,20 +38,20 @@ function createResumeContentHeader(parent) {
 }
 
 function createResumeContentBody(parent) {
+  const bodyLocales = locale.resume_windows_body;
   //resume content body
   const resumeContentBody = document.createElement("div");
 
   const contentBodyObj = document.createElement("p");
-  contentBodyObj.textContent =
-    "Developer with experience in creating and implementing user-oriented applications.";
+  contentBodyObj.textContent = bodyLocales.objective1;
   resumeContentBody.appendChild(contentBodyObj);
 
   //education section
   const educationSection = createResumeSectionContent(
     "----------",
     "----------",
-    "EDUCATION:",
-    ["EDUCATION1", "EDUCATION2"]
+    bodyLocales.education,
+    bodyLocales.education_texts
   );
   resumeContentBody.appendChild(educationSection);
 
@@ -56,8 +59,8 @@ function createResumeContentBody(parent) {
   const skillsSection = createResumeSectionContent(
     "-------",
     "-------",
-    "SKILLS:",
-    ["skills1", "skills2"]
+    bodyLocales.skills,
+    bodyLocales.skill_list
   );
   resumeContentBody.appendChild(skillsSection);
 
@@ -66,26 +69,10 @@ function createResumeContentBody(parent) {
   createResumeHeadlineContent(
     "-----------",
     "-----------",
-    "EXPERIENCE:",
+    bodyLocales.experience,
     experienceSection
   );
-  [
-    {
-      title1: "title1",
-      title2: "title2",
-      list: ["point1", "point2", "point3"],
-    },
-    {
-      title1: "title1",
-      title2: "title2",
-      list: ["point1", "point2", "point3"],
-    },
-    {
-      title1: "title1",
-      title2: "title2",
-      list: ["point1", "point2", "point3"],
-    },
-  ].forEach((e) => {
+  bodyLocales.experience_list.forEach((e) => {
     const list = createResumeSectionContent(
       e.title1,
       e.title2,
