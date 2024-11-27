@@ -1,7 +1,7 @@
 import "../assets/images/note.png";
 import "../assets/images/computer.png";
 import { moveDesktopItems } from "./moveItems";
-import { createResumeContent } from "./windowsContent";
+import { createResumeContent, createMyProjectsContent } from "./windowsContent";
 
 const labels = [
   {
@@ -16,7 +16,7 @@ const labels = [
     title: "My computer",
     path: "My computer",
     src: "../assets/images/computer.png",
-    content: () => document.createElement("div"),
+    content: createMyProjectsContent,
   },
 ];
 const networkLinks = [
@@ -46,7 +46,8 @@ export function createDesktopLabels(parent) {
     let dblTap = false;
     let desktopEventType = "";
 
-    const desktopLabel = createDesktopLabel(label, positionY);
+    const desktopLabel = createDesktopLabel(label);
+    desktopLabel.style.top = `${positionY}px`;
     positionY += 100;
 
     const handleMoveDesktopLabel = (event) => {
@@ -103,12 +104,11 @@ export function createDesktopLabels(parent) {
   });
 }
 
-function createDesktopLabel(label, positionY) {
+function createDesktopLabel(label) {
   const desktopLabel = document.createElement("div");
   desktopLabel.className = "desktop_label";
   desktopLabel.id = label.name;
   desktopLabel.setAttribute("data-target", label.name);
-  desktopLabel.style.top = `${positionY}px`;
 
   const desktopLabelIcon = document.createElement("img");
   desktopLabelIcon.src = label.src;

@@ -1,5 +1,19 @@
+import "../assets/images/folder.png";
 import lang from "./lang.json";
+
 const locale = lang[localStorage.getItem("lang")];
+const projects = [
+  {
+    src: "../assets/images/folder.png",
+    href: "https://flexbox-cosmo-adventure-nwyragrcr-999meshdi666.vercel.app/",
+    title: "Flexbox cosmo adventure",
+  },
+  {
+    src: "../assets/images/folder.png",
+    href: "https://github.com/999MeshDi666/green_food_flutter",
+    title: "Green food",
+  },
+];
 
 //resume content
 export function createResumeContent() {
@@ -120,4 +134,40 @@ function createResumeListContent(list) {
     listContent.appendChild(bulletPoint);
   });
   return listContent;
+}
+
+//my project content
+export function createMyProjectsContent() {
+  const myProjectContent = document.createElement("div");
+  myProjectContent.className = "my_projects_content";
+  let leftPosition = 0;
+
+  projects.forEach((project) => {
+    const myProjectLabel = createMyProjectLabel(project);
+    myProjectLabel.style.left = `${leftPosition}px`;
+    leftPosition += 140;
+    myProjectContent.appendChild(myProjectLabel);
+  });
+  return myProjectContent;
+}
+
+function createMyProjectLabel(project) {
+  const desktopLabel = document.createElement("div");
+  desktopLabel.className = "desktop_label";
+
+  //desktop label icons
+  const desktopIcon = document.createElement("img");
+  desktopIcon.src = project.src;
+  desktopIcon.alt = project.title;
+  desktopLabel.appendChild(desktopIcon);
+
+  //desktop label link
+  const desktopAnchor = document.createElement("a");
+  desktopAnchor.href = project.href;
+  desktopAnchor.target = "_blank";
+  desktopAnchor.textContent = project.title;
+  desktopAnchor.style.display = "block";
+  desktopLabel.appendChild(desktopAnchor);
+
+  return desktopLabel;
 }
