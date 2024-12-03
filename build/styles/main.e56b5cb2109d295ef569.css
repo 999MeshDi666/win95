@@ -118,9 +118,9 @@ a:hover {
   padding: 0.125rem;
   padding-bottom: 1.25rem;
   border-width: 0.188rem;
-  position: absolute;
+  position: fixed;
   width: 100%;
-  height: calc(100vh - 50px);
+  height: calc(100vh - 68px);
   overflow: hidden;
 }
 .desktop_window_resized {
@@ -185,7 +185,7 @@ a:hover {
   text-underline-offset: 0.125rem;
 }
 .window_body_content {
-  height: calc(100vh - 110px);
+  height: calc(100vh - 126px);
   padding: 0.313rem;
   background-color: white;
   font-weight: bold;
@@ -332,7 +332,8 @@ a:hover {
 .desktop_footer_toolbar_lang_panel {
   flex-direction: column;
   gap: 0.8rem;
-  right: 3.5rem;
+  right: 0;
+  width: 8rem;
   bottom: 2.5rem;
 }
 .lang_panel_title {
@@ -357,7 +358,7 @@ a:hover {
     width: 3.125rem;
   }
   .desktop_footer_toolbar_lang_panel {
-    right: 5.8rem;
+    width: 10rem;
   }
 }
 
@@ -365,12 +366,7 @@ a:hover {
   .desktop_footer_tab_title {
     width: fit-content;
   }
-  .desktop_window {
-    height: calc(100vh - 68px);
-  }
-  .window_body_content {
-    height: calc(100vh - 128px);
-  }
+
   .desktop_window_resized {
     width: 50%;
     height: 50vh;
