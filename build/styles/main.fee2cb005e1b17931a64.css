@@ -85,7 +85,7 @@ a:hover {
   -webkit-user-select: none;
   overflow: hidden;
 }
-.desktop_old_monitor_effect {
+/* .desktop_old_monitor_effect {
   background: linear-gradient(
     to bottom,
     #00818100,
@@ -101,16 +101,16 @@ a:hover {
   position: fixed;
   z-index: 9;
   pointer-events: none;
-}
+} */
 
-@keyframes scanlines {
+/* @keyframes scanlines {
   from {
     background-position: 0 -100px;
   }
   to {
     background-position: 0 0px;
   }
-}
+} */
 
 /*desktop windows */
 .desktop_window {
@@ -122,10 +122,6 @@ a:hover {
   width: 100%;
   height: calc(100vh - 68px);
   overflow: hidden;
-<<<<<<<< HEAD:build/styles/main.1a92fd69ca6c77c5a2fe.css
-  /* display: none; */
-========
->>>>>>>> origin/dynamicHtml:build/styles/main.e56b5cb2109d295ef569.css
 }
 .desktop_window_resized {
   width: 85%;
@@ -317,10 +313,6 @@ a:hover {
   -webkit-user-select: none;
   cursor: pointer;
   gap: 0.313rem;
-<<<<<<<< HEAD:build/styles/main.1a92fd69ca6c77c5a2fe.css
-  /* display: none; */
-========
->>>>>>>> origin/dynamicHtml:build/styles/main.e56b5cb2109d295ef569.css
 }
 
 .desktop_footer_tab_img {
