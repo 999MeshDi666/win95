@@ -17,7 +17,7 @@ const curLang = localStorage.getItem("lang");
 const locale = lang[curLang || "EN"];
 
 if (!curLang) localStorage.setItem("lang", "EN");
-if (curLang === "EN") document.body.style.letterSpacing = "-0.1px";
+if (curLang === "EN") document.body.style.letterSpacing = "-1px";
 
 const labels = [
   {
