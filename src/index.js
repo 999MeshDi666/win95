@@ -14,10 +14,10 @@ import {
 } from "./utils/windowsContent";
 
 const curLang = localStorage.getItem("lang");
-const locale = lang[curLang || "RU"];
+const locale = lang[curLang || "EN"];
 
-if (!curLang) localStorage.setItem("lang", "RU");
-if (curLang === "RU") document.body.style.letterSpacing = "-0.1px";
+if (!curLang) localStorage.setItem("lang", "EN");
+if (curLang === "EN") document.body.style.letterSpacing = "-0.1px";
 
 const labels = [
   {

@@ -86,7 +86,7 @@ a:hover {
   -webkit-user-select: none;
   overflow: hidden;
 }
-.desktop_old_monitor_effect {
+/* .desktop_old_monitor_effect {
   background: linear-gradient(
     to bottom,
     #00818100,
@@ -102,16 +102,16 @@ a:hover {
   position: fixed;
   z-index: 9;
   pointer-events: none;
-}
+} */
 
-@keyframes scanlines {
+/* @keyframes scanlines {
   from {
     background-position: 0 -100px;
   }
   to {
     background-position: 0 0px;
   }
-}
+} */
 
 /*desktop windows */
 .desktop_window {
