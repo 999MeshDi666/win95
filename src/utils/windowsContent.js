@@ -1,7 +1,6 @@
 import "../assets/images/folder.png";
 import lang from "./lang.json";
 
-const locale = lang[localStorage.getItem("lang")];
 const projects = [
   {
     src: "../assets/images/folder.png",
@@ -16,16 +15,16 @@ const projects = [
 ];
 
 //resume content
-export function createResumeContent() {
+export function createResumeContent(locale) {
   const resumeContent = document.createElement("div");
   resumeContent.className = "resume_content";
 
-  createResumeContentHeader(resumeContent);
-  createResumeContentBody(resumeContent);
+  createResumeContentHeader(resumeContent, locale);
+  createResumeContentBody(resumeContent, locale);
   return resumeContent;
 }
 
-function createResumeContentHeader(parent) {
+function createResumeContentHeader(parent, locale) {
   const headerLocales = locale.resume_windows_header;
   //resume content header
   const resumeContentHeader = document.createElement("div");
@@ -51,7 +50,7 @@ function createResumeContentHeader(parent) {
   parent.appendChild(resumeContentHeader);
 }
 
-function createResumeContentBody(parent) {
+function createResumeContentBody(parent, locale) {
   const bodyLocales = locale.resume_windows_body;
   //resume content body
   const resumeContentBody = document.createElement("div");

@@ -123,7 +123,6 @@ a:hover {
   width: 100%;
   height: 100vh;
   overflow: hidden;
-  /* display: none; */
 }
 .desktop_window_resized {
   width: 85%;
@@ -215,6 +214,9 @@ a:hover {
   padding: 0.313rem;
   text-align: center;
   position: absolute;
+}
+.desktop_label p {
+  word-break: break-all;
 }
 
 /* desktop footer */
@@ -312,7 +314,6 @@ a:hover {
   -webkit-user-select: none;
   cursor: pointer;
   gap: 0.313rem;
-  /* display: none; */
 }
 
 .desktop_footer_tab_img {

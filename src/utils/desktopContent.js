@@ -1,24 +1,7 @@
 import "../assets/images/note.png";
 import "../assets/images/computer.png";
 import { moveDesktopItems } from "./moveItems";
-import { createResumeContent, createMyProjectsContent } from "./windowsContent";
 
-const labels = [
-  {
-    name: "resume",
-    title: "resume.txt",
-    path: "resume - Notepad",
-    src: "../assets/images/note.png",
-    content: createResumeContent,
-  },
-  {
-    name: "computer",
-    title: "My computer",
-    path: "My computer",
-    src: "../assets/images/computer.png",
-    content: createMyProjectsContent,
-  },
-];
 const networkLinks = [
   {
     title: "Github",
@@ -39,7 +22,7 @@ const networkLinks = [
 ];
 const headerBtnActions = ["collapse", "resize", "close"];
 
-export function createDesktopLabels(parent) {
+export function createDesktopLabels(parent, labels) {
   let positionY = 20;
 
   labels.forEach((label) => {
@@ -304,7 +287,7 @@ function createFooterTabs(label) {
   desktopFooterTabs.appendChild(footerTab);
 }
 
-export function createWinPanelLabels(desktopContent) {
+export function createWinPanelLabels(desktopContent, labels) {
   const winPanelContent = document.querySelector(
     ".desktop_footer_panel_content"
   );

@@ -22,24 +22,32 @@
         "Languages: Kazakh, Russian, English"
       ],
       "experience": "EXPERIENCE:",
-      "exp_company_name1": "Frontend developer | FINQ",
-      "exp_data1": "2024-04 - present | Almaty, Kazakhstan",
-      "exp_list1": [
-        "Development of an application for the provision of financial services to factoring organizations.",
-        "Testing the functionality of the application, writing unit, integration tests.",
-        "Development on the technology stack: javascript, typescript, react, material ui, berry template, vite, vitest, redux-toolkit, figma."
-      ],
-      "exp_company_name2": "Frontend developer | Blockchain & Big Data LAB",
-      "exp_data2": "2024-04 - 2024-11 | Almaty, Kazakhstan",
-      "exp_list2": [
-        "Development and support of enterprise applications for companies in various industries",
-        "Development on the technology stack: javascript, typescript, react, material ui, redux-toolkit, figma."
-      ],
-      "exp_company_name3": "Backend Developer Intern | Centersoft",
-      "exp_data3": "2020-07 - 2020-08 | Almaty, Kazakhstan",
-      "exp_list3": [
-        "Development of the server part of the platform to support the state sectors.",
-        "Development on the technology stack: python, django, postgre sql."
+      "experience_list": [
+        {
+          "title1": "Frontend developer | FINQ",
+          "title2": "2024-04 - present | Almaty, Kazakhstan",
+          "list": [
+            "Development of an application for the provision of financial services to factoring organizations.",
+            "Testing the functionality of the application, writing unit, integration tests.",
+            "Development on the technology stack: javascript, typescript, react, material ui, berry template, vite, vitest, redux-toolkit, figma."
+          ]
+        },
+        {
+          "title1": "Frontend developer | Blockchain & Big Data LAB",
+          "title2": "2024-04 - 2024-11 | Almaty, Kazakhstan",
+          "list": [
+            "Development and support of enterprise applications for companies in various industries",
+            "Development on the technology stack: javascript, typescript, react, material ui, redux-toolkit, figma."
+          ]
+        },
+        {
+          "title1": "Backend Developer Intern | Centersoft",
+          "title2": "2020-07 - 2020-08 | Almaty, Kazakhstan",
+          "list": [
+            "Development of the server part of the platform to support the state sectors.",
+            "Development on the technology stack: python, django, postgre sql."
+          ]
+        }
       ]
     }
   },
