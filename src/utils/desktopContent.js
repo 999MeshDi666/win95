@@ -2,20 +2,6 @@ import "../assets/images/note.png";
 import "../assets/images/computer.png";
 import { moveDesktopItems } from "./moveItems";
 
-const labels = [
-  {
-    name: "resume",
-    title: "resume.txt",
-    path: "resume - Notepad",
-    src: "../assets/images/note.png",
-  },
-  {
-    name: "computer",
-    title: "My computer",
-    path: "My computer",
-    src: "../assets/images/computer.png",
-  },
-];
 const networkLinks = [
   {
     title: "Github",
@@ -36,14 +22,15 @@ const networkLinks = [
 ];
 const headerBtnActions = ["collapse", "resize", "close"];
 
-export function createDesktopLabels(parent) {
+export function createDesktopLabels(parent, labels) {
   let positionY = 20;
 
   labels.forEach((label) => {
     let dblTap = false;
     let desktopEventType = "";
 
-    const desktopLabel = createDesktopLabel(label, positionY);
+    const desktopLabel = createDesktopLabel(label);
+    desktopLabel.style.top = `${positionY}px`;
     positionY += 100;
 
     const handleMoveDesktopLabel = (event) => {
@@ -99,22 +86,12 @@ export function createDesktopLabels(parent) {
     parent?.appendChild(desktopLabel);
   });
 }
-function handleOpenWindows(label, parent) {
-  const footerTab = document.querySelector(`#footer_tab_${label.name}`);
-  if (footerTab) {
-    collapseWindow(footerTab, label);
-    return;
-  }
-  createDesktopWindow(label, parent);
-  createFooterTabs(label);
-}
 
-function createDesktopLabel(label, positionY) {
+function createDesktopLabel(label) {
   const desktopLabel = document.createElement("div");
   desktopLabel.className = "desktop_label";
   desktopLabel.id = label.name;
   desktopLabel.setAttribute("data-target", label.name);
-  desktopLabel.style.top = `${positionY}px`;
 
   const desktopLabelIcon = document.createElement("img");
   desktopLabelIcon.src = label.src;
@@ -276,6 +253,8 @@ function createWindowsBody(label, parent) {
   const windowBodyContent = document.createElement("div");
   windowBodyContent.className = "window_body_content desktop_border_inset";
   windowBodyContent.id = `window_body_${label.name}`;
+
+  windowBodyContent.appendChild(label.content());
   desktopWindowBody.appendChild(windowBodyContent);
 
   parent.appendChild(desktopWindowBody);
@@ -291,7 +270,7 @@ function createFooterTabs(label) {
 
   //footer tab collapse window event
   footerTab.addEventListener("click", () => {
-    collapseWindow(footerTab, label);
+    handleCollapseWindow(footerTab, label);
   });
 
   const footerTabImage = document.createElement("img");
@@ -308,16 +287,7 @@ function createFooterTabs(label) {
   desktopFooterTabs.appendChild(footerTab);
 }
 
-function collapseWindow(footerTab, label) {
-  const desktopWindow = document.querySelector(`#window_${label.name}`);
-  footerTab.classList.toggle("desktop_border_inset");
-  const shouldCollapseWindow = footerTab.classList.contains(
-    "desktop_border_inset"
-  );
-  desktopWindow.style.display = shouldCollapseWindow ? "none" : "block";
-}
-
-export function createWinPanelLabels(desktopContent) {
+export function createWinPanelLabels(desktopContent, labels) {
   const winPanelContent = document.querySelector(
     ".desktop_footer_panel_content"
   );
@@ -342,4 +312,23 @@ export function createWinPanelLabels(desktopContent) {
 
     winPanelContent.appendChild(panelLabel);
   });
+}
+
+function handleOpenWindows(label, parent) {
+  const footerTab = document.querySelector(`#footer_tab_${label.name}`);
+  if (footerTab) {
+    handleCollapseWindow(footerTab, label);
+    return;
+  }
+  createDesktopWindow(label, parent);
+  createFooterTabs(label);
+}
+
+function handleCollapseWindow(footerTab, label) {
+  const desktopWindow = document.querySelector(`#window_${label.name}`);
+  footerTab.classList.toggle("desktop_border_inset");
+  const shouldCollapseWindow = footerTab.classList.contains(
+    "desktop_border_inset"
+  );
+  desktopWindow.style.display = shouldCollapseWindow ? "none" : "block";
 }

@@ -22,24 +22,32 @@
         "Languages: Kazakh, Russian, English"
       ],
       "experience": "EXPERIENCE:",
-      "exp_company_name1": "Frontend developer | FINQ",
-      "exp_data1": "2024-04 - present | Almaty, Kazakhstan",
-      "exp_list1": [
-        "Development of an application for the provision of financial services to factoring organizations.",
-        "Testing the functionality of the application, writing unit, integration tests.",
-        "Development on the technology stack: javascript, typescript, react, material ui, berry template, vite, vitest, redux-toolkit, figma."
-      ],
-      "exp_company_name2": "Frontend developer | Blockchain & Big Data LAB",
-      "exp_data2": "2024-04 - 2024-11 | Almaty, Kazakhstan",
-      "exp_list2": [
-        "Development and support of enterprise applications for companies in various industries",
-        "Development on the technology stack: javascript, typescript, react, material ui, redux-toolkit, figma."
-      ],
-      "exp_company_name3": "Backend Developer Intern | Centersoft",
-      "exp_data3": "2020-07 - 2020-08 | Almaty, Kazakhstan",
-      "exp_list3": [
-        "Development of the server part of the platform to support the state sectors.",
-        "Development on the technology stack: python, django, postgre sql."
+      "experience_list": [
+        {
+          "title1": "Frontend developer | FINQ",
+          "title2": "2024-04 - present | Almaty, Kazakhstan",
+          "list": [
+            "Development of an application for the provision of financial services to factoring organizations.",
+            "Testing the functionality of the application, writing unit, integration tests.",
+            "Development on the technology stack: javascript, typescript, react, material ui, berry template, vite, vitest, redux-toolkit, figma."
+          ]
+        },
+        {
+          "title1": "Frontend developer | Blockchain & Big Data LAB",
+          "title2": "2024-04 - 2024-11 | Almaty, Kazakhstan",
+          "list": [
+            "Development and support of enterprise applications for companies in various industries",
+            "Development on the technology stack: javascript, typescript, react, material ui, redux-toolkit, figma."
+          ]
+        },
+        {
+          "title1": "Backend Developer Intern | Centersoft",
+          "title2": "2020-07 - 2020-08 | Almaty, Kazakhstan",
+          "list": [
+            "Development of the server part of the platform to support the state sectors.",
+            "Development on the technology stack: python, django, postgre sql."
+          ]
+        }
       ]
     }
   },
@@ -66,24 +74,32 @@
         "Языки: Казахский, Русский, Английский"
       ],
       "experience": "ОПЫТ РАБОТЫ:",
-      "exp_company_name1": "Frontend разработчик | FINQ",
-      "exp_data1": "2024-04 - настоящее время | Алматы, Казахстан",
-      "exp_list1": [
-        "Разработка приложения для предоставления финансовых услуг факторинговым организациям.",
-        "Тестирование функциональности приложения, написание модульных и интеграционных тестов.",
-        "Разработка с использованием технологий: javascript, typescript, react, material ui, berry template, vite, vitest, redux-toolkit, figma."
-      ],
-      "exp_company_name2": "Frontend разработчик | Blockchain & Big Data LAB",
-      "exp_data2": "2024-04 - 2024-11 | Алматы, Казахстан",
-      "exp_list2": [
-        "Разработка и поддержка корпоративных приложений для компаний в различных отраслях.",
-        "Разработка с использованием технологий: javascript, typescript, react, material ui, redux-toolkit, figma."
-      ],
-      "exp_company_name3": "Стажёр бэкенд-разработчик | Centersoft",
-      "exp_data3": "2020-07 - 2020-08 | Алматы, Казахстан",
-      "exp_list3": [
-        "Разработка серверной части платформы для поддержки государственных секторов.",
-        "Разработка с использованием технологий: python, django, postgre sql."
+      "experience_list": [
+        {
+          "title1": "Frontend разработчик | FINQ",
+          "title2": "2024-04 - настоящее время | Алматы, Казахстан",
+          "list": [
+            "Разработка приложения для предоставления финансовых услуг факторинговым организациям.",
+            "Тестирование функциональности приложения, написание модульных и интеграционных тестов.",
+            "Разработка с использованием технологий: javascript, typescript, react, material ui, berry template, vite, vitest, redux-toolkit, figma."
+          ]
+        },
+        {
+          "title1": "Frontend разработчик | Blockchain & Big Data LAB",
+          "title2": "2024-04 - 2024-11 | Алматы, Казахстан",
+          "list": [
+            "Разработка и поддержка корпоративных приложений для компаний в различных отраслях.",
+            "Разработка с использованием технологий: javascript, typescript, react, material ui, redux-toolkit, figma."
+          ]
+        },
+        {
+          "title1": "Стажёр бэкенд-разработчик | Centersoft",
+          "title2": "2020-07 - 2020-08 | Алматы, Казахстан",
+          "list": [
+            "Разработка серверной части платформы для поддержки государственных секторов.",
+            "Разработка с использованием технологий: python, django, postgre sql."
+          ]
+        }
       ]
     }
   }

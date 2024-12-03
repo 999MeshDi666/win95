@@ -6,20 +6,48 @@ import "./assets/images/disc.png";
 import {
   createDesktopLabels,
   createWinPanelLabels,
-} from "./utils/createDesktopContent";
+} from "./utils/desktopContent";
+import lang from "./utils/lang.json";
+import {
+  createResumeContent,
+  createMyProjectsContent,
+} from "./utils/windowsContent";
 
-localStorage.setItem("lang", "RU");
+const curLang = localStorage.getItem("lang");
+const locale = lang[curLang || "RU"];
 
+if (!curLang) localStorage.setItem("lang", "RU");
+if (curLang === "RU") document.body.style.letterSpacing = "-0.1px";
+
+const labels = [
+  {
+    name: "resume",
+    title: locale.resume,
+    path: locale.notepad,
+    src: "../assets/images/note.png",
+    content: () => createResumeContent(locale),
+  },
+  {
+    name: "computer",
+    title: locale.computer,
+    path: locale.computer,
+    src: "../assets/images/computer.png",
+    content: createMyProjectsContent,
+  },
+];
 const desktopContent = document.querySelector(".desktop_content");
-createDesktopLabels(desktopContent);
-createWinPanelLabels(desktopContent);
+createDesktopLabels(desktopContent, labels);
+createWinPanelLabels(desktopContent, labels);
 
+// open footer win panel
 const desktopFooterBtn = document.querySelector(".desktop_footer_btn");
+
 const desktopFooterPanel = document.querySelector(".desktop_footer_panel");
 desktopFooterBtn.addEventListener("click", () => {
   desktopFooterPanel.classList.toggle("desktop_footer_panel_hidden");
 });
 
+// open footer lang panel
 const desktopFooterToolbarLangPanel = document.querySelector(
   ".desktop_footer_toolbar_lang_panel"
 );
@@ -32,6 +60,7 @@ desktopFooterToolbarLang.addEventListener("click", () => {
   desktopFooterToolbarLangPanel.classList.toggle("desktop_footer_panel_hidden");
 });
 
+// choose lang option
 const lang_panel_titles = document.querySelectorAll(".lang_panel_title");
 lang_panel_titles.forEach((lang_panel_title) => {
   lang_panel_title.addEventListener("click", () => {
@@ -41,6 +70,7 @@ lang_panel_titles.forEach((lang_panel_title) => {
     desktopFooterToolbarLangPanel.classList.remove(
       "desktop_footer_panel_hidden"
     );
+    location.reload();
   });
 });
 
@@ -48,11 +78,15 @@ lang_panel_titles.forEach((lang_panel_title) => {
 const clock = document.querySelector(".desktop_footer_toolbar_clock");
 
 function tick() {
-  const formattedDate = new Date().toLocaleDateString("ru-RU", {
-    hour: "numeric",
-    minute: "numeric",
-    hour12: false,
-  });
+  const isRuLocale = curLang === "RU";
+  const formattedDate = new Date().toLocaleDateString(
+    isRuLocale ? "ru-RU" : "en-EN",
+    {
+      hour: "numeric",
+      minute: "numeric",
+      hour12: !isRuLocale,
+    }
+  );
   const currentTime = formattedDate.substring(
     formattedDate.indexOf(",") + 1,
     formattedDate.length[-1]
